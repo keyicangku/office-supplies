@@ -1,8 +1,8 @@
+cat > /mnt/user-data/outputs/index.html << 'ENDOFHTML'
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Permissions-Policy" content="camera=*">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>ระบบเบิกอุปกรณ์สำนักงาน บริษัทเคยี่ ก่อสร้าง</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -10,61 +10,49 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --g:#16a34a;--gd:#14532d;--gl:#dcfce7;--gm:#4ade80;--g2:#f0fdf4;
-  --blue:#2563eb;--bl:#dbeafe;
-  --amber:#d97706;--al:#fef3c7;
-  --red:#dc2626;--rl:#fee2e2;
-  --purple:#7c3aed;--pl:#f5f3ff;
+  --blue:#2563eb;--bl:#dbeafe;--amber:#d97706;--al:#fef3c7;
+  --red:#dc2626;--rl:#fee2e2;--purple:#7c3aed;--pl:#f5f3ff;
   --ink:#0f172a;--ink2:#334155;--ink3:#64748b;--ink4:#94a3b8;
   --line:#e2e8f0;--surf:#f8fafc;--white:#fff;
   --r:14px;--rs:9px;--sh:0 4px 24px rgba(0,0,0,.07);--shl:0 12px 48px rgba(0,0,0,.13);
 }
 html{font-family:'Sarabun',sans-serif;background:var(--g2);color:var(--ink);font-size:16px}
 body{min-height:100vh;display:flex;flex-direction:column}
-
-/* NAV */
-.nav{background:linear-gradient(120deg,var(--gd) 0%,var(--g) 100%);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(20,83,45,.35)}
+.nav{background:linear-gradient(120deg,var(--gd),var(--g));height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(20,83,45,.35)}
 .nav-brand{display:flex;align-items:center;gap:10px;color:#fff}
 .nav-icon{width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:9px;display:grid;place-items:center;font-size:1.1rem}
 .nav-title{font-size:.72rem;opacity:.75;font-weight:500}
 .nav-company{font-size:1rem;font-weight:800;line-height:1.1}
 .nav-meta{display:flex;align-items:center;gap:8px}
-.nav-chip{background:rgba(255,255,255,.15);color:#fff;font-size:.78rem;padding:3px 11px;border-radius:20px;font-weight:600}
-.nav-admin-btn{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Sarabun',sans-serif;transition:.18s}
-.nav-admin-btn:hover{background:rgba(255,255,255,.3)}
-
-/* LAYOUT */
+.nav-chip{background:rgba(255,255,255,.15);color:#fff;font-size:.78rem;padding:3px 11px;border-radius:20px;font-weight:600;cursor:pointer;border:none;font-family:'Sarabun',sans-serif}
+.nav-chip.admin-on{background:rgba(251,191,36,.3);border:1px solid rgba(251,191,36,.5)}
 .wrap{display:flex;flex:1}
 .side{width:210px;background:var(--white);border-right:1px solid var(--line);padding:16px 0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
 .si{display:flex;align-items:center;gap:11px;padding:10px 18px;cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink3);border-left:3px solid transparent;transition:.18s}
 .si:hover{background:var(--gl);color:var(--g)}
 .si.on{background:var(--gl);color:var(--g);border-left-color:var(--g)}
-.si-icon{font-size:1rem;width:20px;text-align:center}
+.si.admin-only{display:none}.si.admin-only.show{display:flex}
+.si-icon{width:20px;text-align:center}
 .side-sep{height:1px;background:var(--line);margin:10px 16px}
+.side-label{font-size:.68rem;font-weight:800;color:var(--ink4);padding:6px 18px 2px;text-transform:uppercase;letter-spacing:.06em}
 .main{flex:1;padding:24px;max-width:calc(100vw - 210px);overflow-y:auto}
 .pg{display:none}.pg.on{display:block}
-
-/* CARDS */
 .card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line)}
-.ch{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.ch{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .ct{font-size:1rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
 .cb{padding:22px}
-
-/* STATS */
+.sh2{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.sh2 h2{font-size:1.2rem;font-weight:800;color:var(--ink)}
+.pill{background:var(--gl);color:var(--g);font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:20px}
+.pill.purple{background:var(--pl);color:var(--purple)}
+.pill.red{background:var(--rl);color:var(--red)}
 .sg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
 .sc{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line);padding:18px 20px;display:flex;align-items:center;gap:14px}
 .si2{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;flex-shrink:0}
-.si2.g{background:var(--gl)}.si2.a{background:var(--al)}.si2.r{background:var(--rl)}.si2.b{background:var(--bl)}.si2.p{background:var(--pl)}
+.si2.g{background:var(--gl)}.si2.a{background:var(--al)}.si2.r{background:var(--rl)}.si2.b{background:var(--bl)}
 .sn p{font-size:.75rem;color:var(--ink3);margin-bottom:3px;font-weight:600}
 .sn h3{font-size:1.7rem;font-weight:800;color:var(--ink);line-height:1;font-family:'IBM Plex Mono',monospace}
 .sn small{font-size:.72rem;color:var(--ink4)}
-
-/* MISC */
-.sh{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.sh h2{font-size:1.2rem;font-weight:800;color:var(--ink)}
-.pill{background:var(--gl);color:var(--g);font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.04em}
-.pill.red{background:var(--rl);color:var(--red)}
-.pill.blue{background:var(--bl);color:var(--blue)}
-.pill.purple{background:var(--pl);color:var(--purple)}
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .ff{grid-column:1/-1}
 .fld{display:flex;flex-direction:column;gap:5px}
@@ -75,17 +63,13 @@ body{min-height:100vh;display:flex;flex-direction:column}
 textarea{resize:vertical;min-height:68px}
 .sr{display:flex;gap:7px}.sr .inp{flex:1}
 .sbtn{background:var(--g);color:#fff;border:none;border-radius:var(--rs);padding:10px 14px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:.18s;font-family:'Sarabun',sans-serif;font-weight:700}
-.sbtn:hover{background:var(--gd)}
-.sbtn.blue{background:var(--blue)}.sbtn.blue:hover{background:#1d4ed8}
-.sbtn.red{background:var(--red)}.sbtn.red:hover{background:#b91c1c}
+.sbtn:hover{background:var(--gd)}.sbtn.blue{background:var(--blue)}.sbtn.purple{background:var(--purple)}.sbtn.red{background:var(--red)}
 .tg{display:flex;gap:8px;flex-wrap:wrap}
 .tb{display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:var(--rs);border:2px solid var(--line);cursor:pointer;font-size:.88rem;font-weight:700;color:var(--ink3);background:var(--surf);transition:.18s}
 .tb:hover{border-color:var(--g);color:var(--g)}
 .tb.t-out{border-color:var(--g);background:var(--gl);color:var(--g)}
 .tb.t-in{border-color:var(--blue);background:var(--bl);color:var(--blue)}
 .tb.t-loan{border-color:var(--amber);background:var(--al);color:var(--amber)}
-
-/* PRODUCT CARD */
 .pc{border:2px solid var(--g);border-radius:var(--rs);padding:14px 16px;background:linear-gradient(135deg,var(--gl),#f0fdf4);display:none;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-top:8px}
 .pc.show{display:flex}
 .pcf{display:flex;flex-direction:column;gap:2px;min-width:120px}
@@ -98,36 +82,27 @@ textarea{resize:vertical;min-height:68px}
 .ec{border:2px solid var(--blue);border-radius:var(--rs);padding:11px 16px;background:#eff6ff;display:none;align-items:center;gap:14px;margin-top:8px}
 .ec.show{display:flex}
 .ea{width:42px;height:42px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:1rem;font-weight:800;flex-shrink:0}
-.ei h4{font-size:.95rem;font-weight:800;color:var(--ink)}
-.ei p{font-size:.78rem;color:var(--ink3)}
-
-/* QTY WIDGET */
+.ei h4{font-size:.95rem;font-weight:800;color:var(--ink)}.ei p{font-size:.78rem;color:var(--ink3)}
 .qw{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:var(--rs);overflow:hidden;width:fit-content}
 .qb{width:38px;height:40px;background:var(--surf);border:none;cursor:pointer;font-size:1.1rem;color:var(--ink2);display:grid;place-items:center;transition:.15s}
 .qb:hover{background:var(--gl);color:var(--g)}
 .qi{width:72px;height:40px;border:none;border-left:1.5px solid var(--line);border-right:1.5px solid var(--line);text-align:center;font-size:1rem;font-weight:700;font-family:'IBM Plex Mono',monospace;outline:none;color:var(--ink)}
-
-/* TOGGLE BUTTONS */
 .tgg{display:flex;gap:8px;flex-wrap:wrap}
 .tgb{padding:8px 16px;border-radius:var(--rs);border:2px solid var(--line);cursor:pointer;font-size:.85rem;font-weight:700;color:var(--ink3);background:var(--surf);transition:.18s;display:flex;align-items:center;gap:6px}
 .tgb:hover{border-color:var(--g);color:var(--g)}
 .tgb.a-in{border-color:var(--g);background:var(--gl);color:var(--g)}
 .tgb.a-vac{border-color:var(--amber);background:var(--al);color:var(--amber)}
 .tgb.a-off{border-color:var(--g);background:var(--gl);color:var(--g)}
-.tgb.a-site{border-color:#7c3aed;background:#f5f3ff;color:#7c3aed}
-
-/* DIVIDER / BUTTONS */
+.tgb.a-site{border-color:var(--purple);background:var(--pl);color:var(--purple)}
 .dv{border:none;border-top:1px solid var(--line);margin:18px 0}
 .btn{padding:10px 20px;border-radius:var(--rs);border:none;cursor:pointer;font-size:.91rem;font-weight:700;font-family:'Sarabun',sans-serif;display:inline-flex;align-items:center;gap:7px;transition:.18s}
 .btn-p{background:var(--g);color:#fff}.btn-p:hover{background:var(--gd);box-shadow:0 4px 14px rgba(22,163,74,.3)}
 .btn-s{background:var(--surf);color:var(--ink2);border:1.5px solid var(--line)}.btn-s:hover{background:var(--line)}
 .btn-r{background:var(--red);color:#fff}.btn-r:hover{background:#b91c1c}
-.btn-b{background:var(--blue);color:#fff}.btn-b:hover{background:#1d4ed8}
-.btn-a{background:var(--amber);color:#fff}.btn-a:hover{background:#b45309}
+.btn-a{background:var(--amber);color:#fff}
+.btn-pu{background:var(--purple);color:#fff}.btn-pu:hover{background:#6d28d9}
 .btn-sm{padding:6px 13px;font-size:.8rem}
 .bg{display:flex;gap:10px;justify-content:flex-end;padding-top:6px}
-
-/* TABLE */
 .tw{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:.84rem}
 thead th{background:var(--surf);padding:10px 13px;text-align:left;font-size:.74rem;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--line);white-space:nowrap}
@@ -135,18 +110,25 @@ tbody td{padding:10px 13px;border-bottom:1px solid var(--line);color:var(--ink2)
 tbody tr:hover{background:var(--surf)}
 .bdg{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:20px;font-size:.74rem;font-weight:700}
 .bo{background:var(--gl);color:#15803d}.bi{background:var(--bl);color:#1d4ed8}.bl2{background:var(--al);color:#b45309}
-.apv-ok{background:var(--gl);color:#15803d;padding:2px 8px;border-radius:20px;font-size:.72rem;font-weight:700}
-.apv-wait{background:var(--al);color:#b45309;padding:2px 8px;border-radius:20px;font-size:.72rem;font-weight:700}
-.apv-no{background:var(--rl);color:var(--red);padding:2px 8px;border-radius:20px;font-size:.72rem;font-weight:700}
-
-/* SCANNER MODAL */
+.bapprove{background:#fef9c3;color:#854d0e}.bpending{background:#f1f5f9;color:var(--ink3)}
+.act-btn{padding:4px 10px;border-radius:6px;border:none;cursor:pointer;font-size:.75rem;font-weight:700;font-family:'Sarabun',sans-serif;display:inline-flex;align-items:center;gap:4px;transition:.15s}
+.act-edit{background:#dbeafe;color:#1d4ed8}.act-del{background:var(--rl);color:var(--red)}.act-approve{background:#fef9c3;color:#854d0e}.act-approved{background:var(--gl);color:var(--g);cursor:default}
 .mo{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:none;place-items:center;backdrop-filter:blur(6px)}
 .mo.show{display:grid}
-.md{background:var(--white);border-radius:20px;padding:24px;width:min(460px,95vw);box-shadow:var(--shl)}
-.md-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.md{background:var(--white);border-radius:20px;padding:24px;width:min(500px,95vw);box-shadow:var(--shl);max-height:90vh;overflow-y:auto}
+.md-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .md-head h3{font-size:1.05rem;font-weight:800}
 .close-btn{background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--ink3);line-height:1;padding:2px 6px}
-.scan-label{font-size:.84rem;color:var(--ink3);margin-bottom:14px}
+.pin-display{display:flex;justify-content:center;gap:12px;margin:20px 0}
+.pin-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);background:var(--surf);transition:.2s}
+.pin-dot.filled{background:var(--purple);border-color:var(--purple)}
+.pin-dot.error{background:var(--red);border-color:var(--red)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.pin-key{padding:16px;border:1.5px solid var(--line);border-radius:12px;background:var(--surf);cursor:pointer;font-size:1.2rem;font-weight:700;text-align:center;transition:.15s;color:var(--ink)}
+.pin-key:hover{background:var(--gl);border-color:var(--g);color:var(--g)}
+.pin-key.zero{grid-column:2}.pin-key.del{color:var(--red)}
+.edit-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.edit-field label{font-size:.78rem;font-weight:700;color:var(--ink3)}
 .cam-wrap{position:relative;border-radius:14px;overflow:hidden;background:#000;margin-bottom:14px}
 .scan-line{position:absolute;left:10%;width:80%;height:3px;background:var(--gm);box-shadow:0 0 12px var(--gm);animation:scanline 2s ease-in-out infinite;z-index:10;pointer-events:none}
 @keyframes scanline{0%,100%{top:15%}50%{top:85%}}
@@ -163,132 +145,82 @@ tbody tr:hover{background:var(--surf)}
 .scan-status.wait{background:var(--surf);color:var(--ink3)}
 .scan-status.ok{background:var(--gl);color:var(--gd)}
 .scan-status.err{background:var(--rl);color:var(--red)}
-
-/* TOAST */
-.tc{position:fixed;bottom:20px;right:20px;z-index:300;display:flex;flex-direction:column;gap:9px}
+.tc{position:fixed;bottom:20px;right:20px;z-index:500;display:flex;flex-direction:column;gap:9px}
 .toast{background:var(--ink);color:#fff;border-radius:10px;padding:13px 18px;font-size:.86rem;min-width:250px;box-shadow:var(--shl);display:flex;align-items:center;gap:9px;animation:toastin .28s ease}
-.toast.ok{background:var(--g)}.toast.err{background:var(--red)}
+.toast.ok{background:var(--g)}.toast.err{background:var(--red)}.toast.warn{background:var(--amber)}
 @keyframes toastin{from{transform:translateX(110%);opacity:0}to{transform:none;opacity:1}}
-
-/* SPINNER / BAR */
 .sp{display:inline-block;width:18px;height:18px;border:2px solid transparent;border-top-color:currentColor;border-radius:50%;animation:rot .7s linear infinite}
 @keyframes rot{to{transform:rotate(360deg)}}
-.bar-w{margin-top:4px}.bar-bg{height:5px;background:var(--line);border-radius:3px;overflow:hidden}.bar-f{height:100%;border-radius:3px;transition:width .5s}
+.bar-w{margin-top:4px}.bar-bg{height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar-f{height:100%;border-radius:3px;transition:width .5s}
 .bar-f.ok{background:var(--g)}.bar-f.warn{background:var(--amber)}.bar-f.low{background:var(--red)}
-
-/* QUICK LINKS */
 .ql{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
 .qlb{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--r);border:2px solid var(--line);background:var(--white);cursor:pointer;font-size:.88rem;font-weight:700;color:var(--ink2);transition:.18s;box-shadow:var(--sh)}
 .qlb:hover{border-color:var(--g);color:var(--g);background:var(--gl)}
-
-/* LOOKUP */
-.lookup-hero{background:linear-gradient(135deg,var(--ink) 0%,#1e293b 100%);border-radius:var(--r);padding:28px 24px;margin-bottom:20px;color:#fff;text-align:center;position:relative;overflow:hidden}
-.lookup-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,rgba(22,163,74,.25),transparent 60%)}
-.lookup-badge{display:inline-block;background:rgba(22,163,74,.2);color:var(--gm);font-size:.7rem;font-weight:800;padding:3px 12px;border-radius:20px;letter-spacing:.08em;margin-bottom:10px;border:1px solid rgba(74,222,128,.3)}
-.lookup-hero h1{font-size:1.6rem;font-weight:800;margin-bottom:6px;position:relative}
-.lookup-hero p{font-size:.88rem;opacity:.65;position:relative}
-.lookup-search-card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line);padding:22px;margin-bottom:20px}
-.lookup-input-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
-.lookup-input-row .inp{flex:1;min-width:160px;font-size:1rem;padding:12px 16px}
-.lookup-search-btn{background:var(--red);color:#fff;border:none;border-radius:var(--rs);padding:12px 24px;cursor:pointer;font-size:.95rem;font-weight:700;font-family:'Sarabun',sans-serif;display:flex;align-items:center;gap:8px;transition:.18s;white-space:nowrap}
-.lookup-search-btn:hover{background:#b91c1c}
-.emp-profile-card{background:linear-gradient(135deg,var(--ink),#1e293b);border-radius:var(--r);padding:20px 22px;margin-bottom:20px;color:#fff;display:none;align-items:center;gap:18px}
-.emp-profile-card.show{display:flex}
-.emp-avatar-lg{width:56px;height:56px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:1.4rem;font-weight:800;flex-shrink:0;box-shadow:0 0 0 3px rgba(255,255,255,.2)}
-.emp-profile-info h3{font-size:1.05rem;font-weight:800}
-.emp-profile-info p{font-size:.82rem;opacity:.7;margin-top:2px}
-.emp-profile-code{font-size:.78rem;opacity:.5;margin-top:4px;font-family:'IBM Plex Mono',monospace}
-.lookup-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
-.lookup-stat-card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line);padding:18px 20px}
-.lookup-stat-card p{font-size:.78rem;color:var(--ink3);font-weight:600;margin-bottom:4px}
-.lookup-stat-card h3{font-size:2rem;font-weight:800;color:var(--ink);font-family:'IBM Plex Mono',monospace;line-height:1}
-.lookup-stat-card small{font-size:.75rem;color:var(--ink4)}
-.lookup-section-title{display:flex;align-items:center;gap:10px;margin-bottom:12px;margin-top:4px}
-.lookup-section-title h4{font-size:.9rem;font-weight:800;color:var(--ink2)}
-.lookup-dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0}
-.lookup-dot.green{background:var(--g)}.lookup-dot.blue{background:var(--blue)}.lookup-dot.amber{background:var(--amber)}
-
-/* ADMIN PIN PAD & CONTROLS */
-.admin-login{max-width:400px;margin:60px auto;text-align:center}
-.admin-login h2{font-size:1.4rem;font-weight:800;margin-bottom:8px}
-.admin-login p{color:var(--ink3);margin-bottom:24px;font-size:.9rem}
-.pin-dots{display:flex;justify-content:center;gap:10px;margin-bottom:20px}
-.pin-dot{width:14px;height:14px;border-radius:50%;background:var(--line);transition:.2s}
-.pin-dot.filled{background:var(--g)}
-.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:240px;margin:0 auto 16px}
-.pin-key{padding:16px;border:1.5px solid var(--line);border-radius:var(--rs);background:var(--white);cursor:pointer;font-size:1.2rem;font-weight:700;font-family:'IBM Plex Mono',monospace;transition:.15s;box-shadow:var(--sh)}
-.pin-key:hover{background:var(--gl);border-color:var(--g);color:var(--g)}
-.pin-key:active{transform:scale(.95)}
-.pin-key.del{font-size:.9rem;color:var(--red)}
-.pin-key.ok{background:var(--g);color:#fff;border-color:var(--g)}
-.pin-key.ok:hover{background:var(--gd)}
-.admin-section{margin-bottom:24px}
-.admin-section h3{font-size:.9rem;font-weight:800;color:var(--ink2);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
-.toggle-row:last-child{border-bottom:none}
-.toggle-info p{font-size:.9rem;font-weight:600;color:var(--ink)}
-.toggle-info small{font-size:.78rem;color:var(--ink3)}
-.sw{position:relative;width:44px;height:24px;flex-shrink:0}
-.sw input{opacity:0;width:0;height:0}
-.sw-slider{position:absolute;inset:0;background:var(--line);border-radius:12px;cursor:pointer;transition:.25s}
-.sw-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s}
-.sw input:checked+.sw-slider{background:var(--g)}
-.sw input:checked+.sw-slider:before{transform:translateX(20px)}
-.admin-tabs{display:flex;gap:0;border-bottom:2px solid var(--line);margin-bottom:20px}
-.admin-tab{flex:1;padding:10px;border:none;background:none;cursor:pointer;font-size:.88rem;font-weight:700;color:var(--ink3);border-bottom:3px solid transparent;margin-bottom:-2px;transition:.18s;font-family:'Sarabun',sans-serif}
-.admin-tab.on{color:var(--g);border-bottom-color:var(--g)}
-.admin-panel{display:none}.admin-panel.on{display:block}
-
-/* MODAL EDIT */
-.edit-mo{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:250;display:none;place-items:center;backdrop-filter:blur(4px)}
-.edit-mo.show{display:grid}
-.edit-md{background:var(--white);border-radius:16px;padding:24px;width:min(520px,95vw);box-shadow:var(--shl);max-height:90vh;overflow-y:auto}
-
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.filter-bar .inp{max-width:200px;padding:8px 12px;font-size:.84rem}
+.filter-bar select{max-width:160px;padding:8px 12px;font-size:.84rem}
+.row-approved{background:#f0fdf4!important}
+.admin-badge{display:none;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#fff;font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:10px;margin-left:6px}
+.admin-badge.show{display:inline}
+/* API setup banner */
+.api-banner{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;border-radius:var(--r);padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:16px}
+.api-banner input{flex:1;padding:10px 14px;border-radius:var(--rs);border:none;font-size:.9rem;font-family:'IBM Plex Mono',monospace}
 @media(max-width:900px){.side{display:none}.main{max-width:100vw;padding:14px}.sg{grid-template-columns:1fr 1fr}}
-@media(max-width:580px){.sg{grid-template-columns:1fr}.fg{grid-template-columns:1fr}.lookup-stats{grid-template-columns:1fr}}
+@media(max-width:580px){.sg{grid-template-columns:1fr}.fg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <div class="nav">
   <div class="nav-brand">
     <div class="nav-icon">📦</div>
     <div>
       <div class="nav-title">ระบบเบิกอุปกรณ์สำนักงาน</div>
-      <div class="nav-company" id="navCompany">บริษัทเคยี่ ก่อสร้าง</div>
+      <div class="nav-company">บริษัทเคยี่ ก่อสร้าง</div>
     </div>
   </div>
   <div class="nav-meta">
     <span class="nav-chip" id="topDate"></span>
     <span class="nav-chip" id="topTime"></span>
-    <button class="nav-admin-btn" onclick="go('admin')">⚙️ Admin</button>
+    <button class="nav-chip admin-on" id="adminChip" style="display:none" onclick="logoutAdmin()">🔑 Admin ออก</button>
+    <button class="nav-chip" onclick="openPinModal()">⚙️</button>
   </div>
 </div>
 
 <div class="wrap">
-<nav class="side" id="sideNav">
+<nav class="side">
   <div class="si on" onclick="go('dash')"><span class="si-icon">🏠</span>แดชบอร์ด</div>
   <div class="si"    onclick="go('form')"><span class="si-icon">📝</span>เบิก/รับอุปกรณ์</div>
   <div class="side-sep"></div>
   <div class="si"    onclick="go('hist')"><span class="si-icon">📋</span>ประวัติรายการ</div>
   <div class="si"    onclick="go('lookup')"><span class="si-icon">🔍</span>ค้นหาพนักงาน</div>
-  <div class="si" id="siStock" style="display:none" onclick="go('stock')"><span class="si-icon">📊</span>สต็อกสินค้า</div>
   <div class="side-sep"></div>
-  <div class="si"    onclick="go('admin')"><span class="si-icon">⚙️</span>ผู้ดูแลระบบ</div>
+  <div class="side-label">ADMIN</div>
+  <div class="si admin-only" onclick="go('admin')"><span class="si-icon">⚙️</span>ตั้งค่า Admin</div>
 </nav>
 
 <main class="main">
 
-<div class="pg on" id="pg-dash">
-  <div class="sh"><h2>ภาพรวมระบบ</h2><span class="pill">DASHBOARD</span></div>
-
-  <div id="announceBanner" style="display:none;background:linear-gradient(135deg,#1e293b,var(--ink));color:#fff;border-radius:var(--r);padding:14px 20px;margin-bottom:18px;display:flex;align-items:center;gap:12px">
-    <span style="font-size:1.2rem">📢</span>
-    <span id="announceText" style="font-size:.9rem;font-weight:600"></span>
+<!-- ═══ API SETUP (แสดงครั้งแรก) ═══ -->
+<div id="apiSetupBanner" class="api-banner" style="display:none">
+  <div style="font-size:1.5rem">🔗</div>
+  <div style="flex:1">
+    <div style="font-weight:800;margin-bottom:6px">ตั้งค่า URL ของ Apps Script</div>
+    <div style="font-size:.82rem;opacity:.7;margin-bottom:10px">วาง URL จาก Google Apps Script Deploy ที่นี่</div>
+    <div style="display:flex;gap:8px">
+      <input type="text" id="apiUrlInput" placeholder="https://script.google.com/macros/s/AKfy.../exec">
+      <button class="sbtn" onclick="saveApiUrl()">💾 บันทึก</button>
+    </div>
   </div>
+</div>
 
+<!-- ═══ DASHBOARD ═══ -->
+<div class="pg on" id="pg-dash">
+  <div class="sh2"><h2>ภาพรวมระบบ</h2><span class="pill">DASHBOARD</span></div>
   <div class="sg">
-    <div class="sc"><div class="si2 g">📦</div><div class="sn"><p>สินค้าทั้งหมด</p><h3 id="d-total">—</h3><small>รายการในระบบ</small></div></div>
+    <div class="sc"><div class="si2 g">📦</div><div class="sn"><p>สินค้าทั้งหมด</p><h3 id="d-total">—</h3><small>รายการ</small></div></div>
     <div class="sc"><div class="si2 a">⚠️</div><div class="sn"><p>ใกล้หมด (≤5)</p><h3 id="d-low">—</h3><small>ต้องสั่งซื้อ</small></div></div>
     <div class="sc"><div class="si2 r">🚫</div><div class="sn"><p>หมดสต็อก</p><h3 id="d-out">—</h3><small>รายการ</small></div></div>
     <div class="sc"><div class="si2 b">✅</div><div class="sn"><p>เบิกวันนี้</p><h3 id="d-today">—</h3><small>รายการ</small></div></div>
@@ -298,25 +230,22 @@ tbody tr:hover{background:var(--surf)}
     <div class="qlb" onclick="go('form');setType('รับเข้า')">⬇️ รับเข้า</div>
     <div class="qlb" onclick="go('form');setType('ยืมอุปกรณ์')">🔄 ยืมอุปกรณ์</div>
     <div class="qlb" onclick="go('hist')">📋 ดูประวัติ</div>
-    <div class="qlb" onclick="go('lookup')">🔍 ค้นหาพนักงาน</div>
-    <div class="qlb" id="qlStock" style="display:none" onclick="go('stock')">📊 สต็อกสินค้า</div>
   </div>
   <div class="card">
-    <div class="ch"><span class="ct">📋 รายการล่าสุด</span><button class="btn btn-s btn-sm" onclick="go('hist')">ดูทั้งหมด →</button></div>
-    <div class="tw">
-      <table>
-        <thead><tr><th>วันที่</th><th>ประเภท</th><th>สินค้า</th><th>จำนวน</th><th>คงเหลือ</th><th>ผู้เบิก</th><th>แผนก</th></tr></thead>
-        <tbody id="d-tbody"><tr><td colspan="7" style="text-align:center;padding:28px;color:var(--ink3)">กำลังโหลด...</td></tr></tbody>
-      </table>
-    </div>
+    <div class="ch"><span class="ct">📋 รายการล่าสุด</span><button class="btn btn-s btn-sm" onclick="loadDash()">🔄</button></div>
+    <div class="tw"><table>
+      <thead><tr><th>วันที่</th><th>ประเภท</th><th>สินค้า</th><th>จำนวน</th><th>คงเหลือ</th><th>ผู้เบิก</th><th>สถานะ</th></tr></thead>
+      <tbody id="d-tbody"><tr><td colspan="7" style="text-align:center;padding:28px;color:var(--ink3)">กำลังโหลด...</td></tr></tbody>
+    </table></div>
   </div>
 </div>
 
+<!-- ═══ FORM ═══ -->
 <div class="pg" id="pg-form">
-  <div class="sh"><h2>แบบฟอร์มเบิก-รับอุปกรณ์</h2><span class="pill">FORM</span></div>
+  <div class="sh2"><h2>แบบฟอร์มเบิก-รับอุปกรณ์</h2><span class="pill">FORM</span></div>
   <div class="card"><div class="cb">
     <div class="fg" style="margin-bottom:16px">
-      <div class="fld"><label class="lbl">วันที่รับเข้า/เบิกออก<span class="req">*</span></label><input type="date" id="fDate" class="inp"></div>
+      <div class="fld"><label class="lbl">วันที่<span class="req">*</span></label><input type="date" id="fDate" class="inp"></div>
     </div>
     <hr class="dv">
     <div class="fld ff" style="margin-bottom:16px">
@@ -331,20 +260,17 @@ tbody tr:hover{background:var(--surf)}
     <hr class="dv">
     <div class="fg">
       <div class="fld ff">
-        <label class="lbl">รหัสพนักงาน 员工编号</label>
+        <label class="lbl">รหัสพนักงาน</label>
         <div class="sr">
-          <input type="text" id="fEmpCode" class="inp" placeholder="กรอกหรือสแกนรหัสพนักงาน" oninput="onEmp(this.value)">
-          <button class="sbtn blue" onclick="openScan('emp')">📷 สแกน QR</button>
+          <input type="text" id="fEmpCode" class="inp" placeholder="กรอกหรือสแกน" oninput="onEmp(this.value)">
+          <button class="sbtn blue" onclick="openScan('emp')">📷 สแกน</button>
         </div>
       </div>
     </div>
-    <div class="ec" id="empCard">
-      <div class="ea" id="empAv">?</div>
-      <div class="ei"><h4 id="empNm">—</h4><p id="empDp">—</p></div>
-    </div>
+    <div class="ec" id="empCard"><div class="ea" id="empAv">?</div><div class="ei"><h4 id="empNm">—</h4><p id="empDp">—</p></div></div>
     <div class="fg" style="margin-top:14px">
-      <div class="fld"><label class="lbl">ชื่อผู้รับ/ผู้เบิก</label><input type="text" id="fEmpName" class="inp" placeholder="ชื่อ-นามสกุล"></div>
-      <div class="fld"><label class="lbl">ชื่อแผนก 部门</label><input type="text" id="fDept" class="inp" placeholder="แผนก"></div>
+      <div class="fld"><label class="lbl">ชื่อผู้รับ/ผู้เบิก</label><input type="text" id="fEmpName" class="inp"></div>
+      <div class="fld"><label class="lbl">แผนก</label><input type="text" id="fDept" class="inp"></div>
     </div>
     <hr class="dv">
     <div class="fg">
@@ -358,44 +284,38 @@ tbody tr:hover{background:var(--surf)}
     </div>
     <div class="pc" id="prodCard">
       <div class="pcf"><span class="pcl">ชื่ออุปกรณ์</span><span class="pcv" id="ppNm">—</span></div>
-      <div class="pcf"><span class="pcl">ขนาด/สเปค</span><span class="pcv" id="ppSz">—</span></div>
+      <div class="pcf"><span class="pcl">ขนาด</span><span class="pcv" id="ppSz">—</span></div>
       <div class="pcf"><span class="pcl">หมวดหมู่</span><span class="pcv" id="ppCat">—</span></div>
       <div class="pcf"><span class="pcl">หน่วย</span><span class="pcv" id="ppUn">—</span></div>
-      <div class="pcs">
-        <div class="pcs-n" id="ppSt">—</div>
-        <div class="pcs-l">ยอดคงเหลือ</div>
-        <div class="bar-w"><div class="bar-bg"><div class="bar-f ok" id="ppBar" style="width:100%"></div></div></div>
-      </div>
+      <div class="pcs"><div class="pcs-n" id="ppSt">—</div><div class="pcs-l">ยอดคงเหลือ</div><div class="bar-w"><div class="bar-bg"><div class="bar-f ok" id="ppBar" style="width:100%"></div></div></div></div>
     </div>
     <div class="fg" style="margin-top:14px">
-      <div class="fld"><label class="lbl">ชื่ออุปกรณ์สำนักงาน</label><input type="text" id="fPName" class="inp" placeholder="ชื่อสินค้า"></div>
-      <div class="fld"><label class="lbl">ขนาด/สเปค</label><input type="text" id="fPSize" class="inp" placeholder="ขนาด/รุ่น"></div>
+      <div class="fld"><label class="lbl">ชื่ออุปกรณ์</label><input type="text" id="fPName" class="inp"></div>
+      <div class="fld"><label class="lbl">ขนาด/สเปค</label><input type="text" id="fPSize" class="inp"></div>
     </div>
     <div class="fg">
       <div class="fld">
         <label class="lbl">จำนวน<span class="req">*</span></label>
         <div class="qw"><button class="qb" onclick="adjQ(-1)">−</button><input type="number" id="fQty" class="qi" value="1" min="1"><button class="qb" onclick="adjQ(1)">+</button></div>
       </div>
-      <div class="fld"><label class="lbl">หน่วย</label><input type="text" id="fUnit" class="inp" placeholder="ด้าม / กล่อง / ชิ้น"></div>
-      <div class="fld"><label class="lbl">ยอดคงเหลือ (ปัจจุบัน)</label><input type="text" id="fStock" class="inp" readonly style="background:#f8fafc;font-weight:700;color:var(--g)"></div>
+      <div class="fld"><label class="lbl">หน่วย</label><input type="text" id="fUnit" class="inp"></div>
+      <div class="fld"><label class="lbl">ยอดคงเหลือ</label><input type="text" id="fStock" class="inp" readonly style="background:#f8fafc;font-weight:700;color:var(--g)"></div>
     </div>
     <hr class="dv">
-    <div class="fg">
-      <div class="fld ff"><label class="lbl">หมายเหตุ 备注</label><textarea id="fNote" class="inp" placeholder="หมายเหตุเพิ่มเติม..."></textarea></div>
-    </div>
+    <div class="fg"><div class="fld ff"><label class="lbl">หมายเหตุ</label><textarea id="fNote" class="inp"></textarea></div></div>
     <div class="fg">
       <div class="fld">
         <label class="lbl">สถานะ</label>
         <div class="tgg" id="statusBtns">
           <div class="tgb a-in" data-v="ใช้งานอยู่" onclick="tog(this,'status')">✅ ใช้งานอยู่</div>
-          <div class="tgb"      data-v="ว่าง"       onclick="tog(this,'status')">🟡 ว่าง</div>
+          <div class="tgb" data-v="ว่าง" onclick="tog(this,'status')">🟡 ว่าง</div>
         </div>
       </div>
       <div class="fld">
         <label class="lbl">สถานที่ใช้งาน</label>
         <div class="tgg" id="locationBtns">
-          <div class="tgb a-off" data-v="ออฟฟิศ"  onclick="tog(this,'location')">🏢 ออฟฟิศ</div>
-          <div class="tgb"        data-v="ไซต์งาน"  onclick="tog(this,'location')">🚧 ไซต์งาน</div>
+          <div class="tgb a-off" data-v="ออฟฟิศ" onclick="tog(this,'location')">🏢 ออฟฟิศ</div>
+          <div class="tgb" data-v="ไซต์งาน" onclick="tog(this,'location')">🚧 ไซต์งาน</div>
         </div>
       </div>
     </div>
@@ -409,741 +329,749 @@ tbody tr:hover{background:var(--surf)}
   </div></div>
 </div>
 
+<!-- ═══ HISTORY ═══ -->
 <div class="pg" id="pg-hist">
-  <div class="sh"><h2>ประวัติรายการ</h2><span class="pill">HISTORY</span></div>
+  <div class="sh2"><h2>ประวัติรายการ</h2><span class="pill">HISTORY</span><span class="admin-badge" id="adminBadgeHist">ADMIN</span></div>
+  <div class="filter-bar">
+    <input type="text" id="histSearch" class="inp" placeholder="🔍 ค้นหา..." oninput="filterHist()">
+    <select id="histTypeFilter" class="inp" onchange="filterHist()">
+      <option value="">ทุกประเภท</option>
+      <option value="เบิกออก">⬆️ เบิกออก</option>
+      <option value="รับเข้า">⬇️ รับเข้า</option>
+      <option value="ยืมอุปกรณ์">🔄 ยืม</option>
+    </select>
+    <button class="btn btn-s btn-sm" onclick="loadHist()">🔄 รีเฟรช</button>
+  </div>
   <div class="card">
     <div class="ch">
-      <span class="ct">📋 50 รายการล่าสุด</span>
-      <div style="display:flex;gap:8px">
-        <span id="histAdminNote" style="font-size:.78rem;color:var(--ink3);align-self:center">🔒 โหมดทั่วไป (ล็อกการแก้ไข)</span>
-        <button class="btn btn-s btn-sm" onclick="loadHist()">🔄 รีเฟรช</button>
-      </div>
+      <span class="ct">📋 100 รายการล่าสุด <span id="histCountLabel" style="font-size:.78rem;color:var(--ink3);font-weight:400"></span></span>
+      <span id="adminActionsLabel" style="display:none;font-size:.8rem;color:var(--amber);font-weight:700">⚠️ Admin mode</span>
     </div>
-    <div class="tw">
-      <table>
-        <thead><tr>
-          <th>ID</th><th>วันที่</th><th>ประเภท</th>
-          <th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th>จำนวน</th><th>หน่วย</th><th>คงเหลือ</th>
-          <th>รหัสพนักงาน</th><th>ชื่อพนักงาน</th><th>แผนก</th><th>หมายเหตุ</th><th>อนุมัติ</th>
-          <th class="admin-action-cols" style="display:none">จัดการ</th>
-        </tr></thead>
-        <tbody id="histBody"><tr><td colspan="14" style="text-align:center;padding:36px;color:var(--ink3)">กำลังโหลด...</td></tr></tbody>
-      </table>
-    </div>
+    <div class="tw"><table>
+      <thead><tr>
+        <th>ID</th><th>วันที่</th><th>ประเภท</th><th>สินค้า</th>
+        <th>จำนวน</th><th>หน่วย</th><th>คงเหลือ</th>
+        <th>พนักงาน</th><th>แผนก</th><th>หมายเหตุ</th><th>สถานะ</th>
+        <th id="actionColHead" style="display:none">จัดการ</th>
+      </tr></thead>
+      <tbody id="histBody"><tr><td colspan="12" style="text-align:center;padding:36px;color:var(--ink3)">กำลังโหลด...</td></tr></tbody>
+    </table></div>
   </div>
 </div>
 
+<!-- ═══ LOOKUP ═══ -->
 <div class="pg" id="pg-lookup">
-  <div class="sh"><h2>ค้นหาพนักงาน</h2><span class="pill purple">LOOKUP</span></div>
-  <div class="lookup-hero">
-    <div class="lookup-badge">EMPLOYEE DATABASE</div>
-    <h1>ตรวจสอบข้อมูลพนักงานและการเบิกจ่าย</h1>
-    <p>ระบุรหัสพนักงานเพื่อดูรายการทั้งหมดที่พนักงานคนนั้นทำรายการในระบบ</p>
-  </div>
-  <div class="lookup-search-card">
-    <label class="lbl">ป้อนรหัสพนักงานที่ต้องการเปิดข้อมูล</label>
-    <div class="lookup-input-row">
-      <input type="text" id="lookupEmpInput" class="inp" placeholder="ตัวอย่างเช่น EM001">
-      <button class="lookup-search-btn" onclick="searchEmpData()">🔍 ค้นหาข้อมูล</button>
+  <div class="sh2"><h2>ค้นหาพนักงาน</h2><span class="pill">LOOKUP</span></div>
+  <div class="card" style="margin-bottom:16px"><div class="cb">
+    <label class="lbl">รหัสพนักงาน</label>
+    <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+      <input type="text" id="lookupCode" class="inp" style="flex:1" placeholder="กรอกรหัสพนักงาน..." onkeydown="if(event.key==='Enter')doLookup()">
+      <button class="sbtn blue" onclick="openScan('lookup')">📷 สแกน</button>
+      <button class="sbtn purple" id="nfcBtn" onclick="startNFC()" style="display:none">📡 NFC</button>
+      <button class="sbtn" onclick="doLookup()">🔍 ค้นหา</button>
     </div>
-  </div>
-  <div class="emp-profile-card" id="lookupProfile">
-    <div class="emp-avatar-lg" id="lEmpAv">?</div>
-    <div class="emp-profile-info">
-      <h3 id="lEmpNm">—</h3>
-      <p id="lEmpDp">—</p>
-      <div class="emp-profile-code" id="lEmpCd">—</div>
-    </div>
-  </div>
-  <div id="lookupResults" style="display:none">
-    <div class="lookup-section-title">
-      <div class="lookup-dot blue"></div>
-      <h4>ประวัติการเบิกจ่ายของพนักงานคนนี้</h4>
-    </div>
-    <div class="card">
-      <div class="tw">
-        <table>
-          <thead><tr><th>วันที่</th><th>ประเภท</th><th>บาร์โค้ด</th><th>ชื่อสินค้า</th><th>จำนวน</th><th>หน่วย</th><th>หมายเหตุ</th></tr></thead>
-          <tbody id="lookupTableBody"></tbody>
-        </table>
+    <div id="nfcStatus" style="display:none;margin-top:10px;padding:10px 14px;border-radius:var(--rs);font-size:.86rem;font-weight:600;background:var(--pl);color:var(--purple);border:1.5px solid #ddd6fe">📡 รอแตะการ์ด NFC...</div>
+  </div></div>
+  <div id="lookupResult" style="display:none">
+    <div class="card" style="margin-bottom:14px"><div class="cb" style="display:flex;align-items:center;gap:16px">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:1.4rem;font-weight:800;flex-shrink:0" id="luAvatar">?</div>
+      <div>
+        <div style="font-size:1.1rem;font-weight:800" id="luName">—</div>
+        <div style="font-size:.84rem;color:var(--ink3)" id="luDept">—</div>
+        <div style="font-size:.78rem;color:var(--ink4);font-family:monospace" id="luCode">—</div>
       </div>
+    </div></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
+      <div class="card"><div class="cb" style="text-align:center"><div style="font-size:.75rem;color:var(--ink3);font-weight:700;margin-bottom:4px">⬆️ เบิกออก</div><div style="font-size:1.8rem;font-weight:800;color:var(--g);font-family:monospace" id="luQtyOut">0</div><div style="font-size:.72rem;color:var(--ink4)" id="luCntOut">0 รายการ</div></div></div>
+      <div class="card"><div class="cb" style="text-align:center"><div style="font-size:.75rem;color:var(--ink3);font-weight:700;margin-bottom:4px">⬇️ รับเข้า</div><div style="font-size:1.8rem;font-weight:800;color:var(--blue);font-family:monospace" id="luQtyIn">0</div><div style="font-size:.72rem;color:var(--ink4)" id="luCntIn">0 รายการ</div></div></div>
+      <div class="card"><div class="cb" style="text-align:center"><div style="font-size:.75rem;color:var(--ink3);font-weight:700;margin-bottom:4px">🔄 ยืม</div><div style="font-size:1.8rem;font-weight:800;color:var(--amber);font-family:monospace" id="luQtyLoan">0</div><div style="font-size:.72rem;color:var(--ink4)" id="luCntLoan">0 รายการ</div></div></div>
     </div>
+    <div class="card"><div class="ch"><span class="ct">📋 20 รายการล่าสุด</span></div>
+    <div class="tw"><table>
+      <thead><tr><th>วันที่</th><th>ประเภท</th><th>สินค้า</th><th>จำนวน</th><th>หน่วย</th><th>สถานที่</th><th>หมายเหตุ</th></tr></thead>
+      <tbody id="luBody"></tbody>
+    </table></div></div>
+  </div>
+  <div id="lookupEmpty" style="text-align:center;padding:48px 20px;color:var(--ink3)">
+    <div style="font-size:3rem;margin-bottom:12px">🔍</div>
+    <p style="font-weight:600">กรอกรหัสพนักงานแล้วกดค้นหา</p>
   </div>
 </div>
 
-<div class="pg" id="pg-stock">
-  <div class="sh"><h2>คลังสต็อกสินค้าคงเหลือ</h2><span class="pill blue">STOCK</span></div>
-  <div class="card">
-    <div class="cb">
-      <div class="stock-filter">
-        <input type="text" id="stockSearch" class="inp stock-search" placeholder="🔍 ค้นหาด้วยชื่อ หรือรหัสบาร์โค้ด..." oninput="filterStockTable()">
-        <button class="btn btn-s" onclick="loadStockData()">🔄 รีเฟรชสต็อก</button>
-      </div>
-      <div class="tw">
-        <table>
-          <thead><tr><th>รหัสสินค้า</th><th>ชื่ออุปกรณ์สำนักงาน</th><th>ขนาด/สเปค</th><th>หมวดหมู่</th><th>คงเหลือ</th><th>หน่วย</th><th>สถานะสต็อก</th></tr></thead>
-          <tbody id="stockTableBody"><tr><td colspan="7" style="text-align:center;padding:24px">กำลังโหลดข้อมูลคลัง...</td></tr></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
+<!-- ═══ ADMIN ═══ -->
 <div class="pg" id="pg-admin">
-  <div class="sh"><h2>แผงควบคุมผู้ดูแลระบบ</h2><span class="pill red">ADMIN PANEL</span></div>
-  
-  <div class="admin-login" id="adminLock">
-    <h2>🔒 กรุณาใส่รหัสผ่านล็อกระบบ</h2>
-    <p>ส่วนนี้จำกัดการเข้าถึงเฉพาะเจ้าหน้าที่คลังหรือหัวหน้างานเท่านั้น</p>
-    <div class="pin-dots">
-      <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
-    </div>
-    <div class="pin-pad">
-      <div class="pin-key" onclick="pressPin('1')">1</div><div class="pin-key" onclick="pressPin('2')">2</div><div class="pin-key" onclick="pressPin('3')">3</div>
-      <div class="pin-key" onclick="pressPin('4')">4</div><div class="pin-key" onclick="pressPin('5')">5</div><div class="pin-key" onclick="pressPin('6')">6</div>
-      <div class="pin-key" onclick="pressPin('7')">7</div><div class="pin-key" onclick="pressPin('8')">8</div><div class="pin-key" onclick="pressPin('9')">9</div>
-      <div class="pin-key del" onclick="pressPin('del')">ลบ</div><div class="pin-key" onclick="pressPin('0')">0</div><div class="pin-key ok" onclick="pressPin('ok')">ตกลง</div>
-    </div>
-  </div>
+  <div class="sh2"><h2>ตั้งค่า Admin</h2><span class="pill purple">ADMIN</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
 
-  <div id="adminContent" style="display:none">
-    <div class="admin-tabs">
-      <button class="admin-tab on" id="at-conf" onclick="switchAdminTab('conf')">⚙️ ตั้งค่าระบบ</button>
-      <button class="admin-tab"    id="at-appv" onclick="switchAdminTab('appv')">⏳ รายการรอนุมัติ</button>
-    </div>
-    
-    <div class="admin-panel on" id="ap-conf">
-      <div class="card"><div class="cb">
-        <div class="admin-section">
-          <h3>🔧 ฟังก์ชันควบคุมระบบคลัง</h3>
-          <div class="toggle-row">
-            <div class="toggle-info"><p>เปิดใช้งานระบบสต็อกเต็มรูปแบบ</p><small>แสดงแท็บรายงานและหน้าคำนวณแยกต่างหากในแถบเมนู</small></div>
-            <label class="sw"><input type="checkbox" id="cfgStock" onchange="toggleConfig('stock',this.checked)"><span class="sw-slider"></span></label>
-          </div>
-          <div class="toggle-row">
-            <div class="toggle-info"><p>บังคับต้องตรวจสอบรหัสพนักงาน</p><small>หากเปิดไว้ จะไม่สามารถบันทึกได้หากรหัสพนักงานไม่ตรงฐานข้อมูล</small></div>
-            <label class="sw"><input type="checkbox" id="cfgEmp" onchange="toggleConfig('emp',this.checked)"><span class="sw-slider"></span></label>
+    <!-- API URL -->
+    <div class="card" style="grid-column:1/-1"><div class="ch"><span class="ct">🔗 Apps Script URL</span></div><div class="cb">
+      <p style="font-size:.85rem;color:var(--ink3);margin-bottom:12px">URL จาก Google Apps Script Deploy (ใช้เชื่อม GitHub Pages กับ Google Sheet)</p>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="adminApiUrl" class="inp" placeholder="https://script.google.com/macros/s/.../exec" style="font-family:monospace;font-size:.82rem">
+        <button class="btn btn-p" onclick="saveApiUrl()">💾 บันทึก</button>
+      </div>
+      <div id="apiUrlStatus" style="margin-top:8px;font-size:.82rem;color:var(--ink3)"></div>
+    </div></div>
+
+    <!-- เปลี่ยน PIN -->
+    <div class="card"><div class="ch"><span class="ct">🔑 เปลี่ยน PIN Admin</span></div><div class="cb">
+      <div class="edit-field"><label>PIN ปัจจุบัน</label><input type="password" id="oldPin" class="inp" placeholder="••••" maxlength="6"></div>
+      <div class="edit-field"><label>PIN ใหม่ (4-6 หลัก)</label><input type="password" id="newPin" class="inp" placeholder="••••" maxlength="6"></div>
+      <div class="edit-field"><label>ยืนยัน PIN ใหม่</label><input type="password" id="confirmPin" class="inp" placeholder="••••" maxlength="6"></div>
+      <button class="btn btn-pu" onclick="changePin()" style="width:100%">🔑 เปลี่ยน PIN</button>
+    </div></div>
+
+    <!-- การแสดงผล -->
+    <div class="card"><div class="ch"><span class="ct">👁️ การแสดงผล</span></div><div class="cb">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:12px">
+          <span style="font-size:.9rem;font-weight:600">ต้องอนุมัติก่อนถึงจะสมบูรณ์</span>
+          <input type="checkbox" id="settingRequireApprove" onchange="saveSetting('requireApprove',this.checked)" style="width:20px;height:20px;accent-color:var(--g);cursor:pointer;flex-shrink:0">
+        </label>
+        <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:12px">
+          <span style="font-size:.9rem;font-weight:600">แสดงยอดคงเหลือในฟอร์ม</span>
+          <input type="checkbox" id="settingShowStock2" onchange="saveSetting('showStock2',this.checked)" style="width:20px;height:20px;accent-color:var(--g);cursor:pointer;flex-shrink:0" checked>
+        </label>
+      </div>
+    </div></div>
+
+    <!-- ข้อมูลติดต่อ LINE -->
+    <div class="card" style="grid-column:1/-1"><div class="ch"><span class="ct">💚 ข้อมูลติดต่อ LINE สโตร์</span></div><div class="cb">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="edit-field"><label>ชื่อผู้ดูแลสโตร์</label><input type="text" id="contactName" class="inp" placeholder="ชื่อ-นามสกุล"></div>
+        <div class="edit-field"><label>LINE ID</label><input type="text" id="contactLine" class="inp" placeholder="@line_id"></div>
+        <div class="edit-field"><label>เบอร์โทร</label><input type="text" id="contactTel" class="inp" placeholder="08x-xxx-xxxx"></div>
+        <div class="edit-field"><label>แผนก/ตำแหน่ง</label><input type="text" id="contactDept" class="inp" placeholder="สโตร์"></div>
+      </div>
+      <button class="btn btn-p" onclick="saveContact()" style="margin-top:12px">💾 บันทึก</button>
+      <div id="contactPreview" style="margin-top:14px;display:none;padding:14px;background:var(--gl);border-radius:var(--rs);border:1.5px solid var(--g)">
+        <div style="font-size:.75rem;font-weight:800;color:var(--gd);margin-bottom:8px">PREVIEW</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:1rem;font-weight:800" id="prvAvatar">S</div>
+          <div>
+            <div style="font-weight:700" id="prvName">—</div>
+            <div style="font-size:.82rem;color:var(--ink3)" id="prvDept">—</div>
+            <a id="prvLineLink" href="#" target="_blank" style="font-size:.82rem;color:#06c755;font-weight:700;text-decoration:none">💚 LINE: —</a>
           </div>
         </div>
-        <div class="admin-section">
-          <h3>📢 แถบประกาศข้อความข่าวด่วน</h3>
-          <div class="fld" style="margin-bottom:12px">
-            <label class="lbl">พิมพ์ข้อความประกาศประจำวัน</label>
-            <input type="text" id="announceInput" class="inp" placeholder="พิมพ์ข่าวสารแจ้งเตือนพนักงานที่นี่...">
-          </div>
-          <div class="bg">
-            <button class="btn btn-s" onclick="clearAnnounce()">❌ ปิดประกาศ</button>
-            <button class="btn btn-p" onclick="saveAnnounce()">💾 อัปเดตประกาศ</button>
-          </div>
-        </div>
-      </div></div>
-    </div>
+      </div>
+    </div></div>
 
-    <div class="admin-panel" id="ap-appv">
-      <div class="lookup-section-title"><div class="lookup-dot amber"></div><h4>คำขอทำรายการเบิกที่รอนุมัติ</h4></div>
-      <div id="pendingContainer"><p style="text-align:center;padding:20px;color:var(--ink3)">ไม่มีรายการค้างอนุมัติ</p></div>
-    </div>
+    <!-- รออนุมัติ -->
+    <div class="card" style="grid-column:1/-1"><div class="ch">
+      <span class="ct">✅ รายการรออนุมัติ <span id="pendingCount" style="font-size:.78rem;color:var(--amber)"></span></span>
+      <button class="btn btn-s btn-sm" onclick="loadPending()">🔄</button>
+    </div><div class="tw"><table>
+      <thead><tr><th>ID</th><th>วันที่</th><th>ประเภท</th><th>สินค้า</th><th>จำนวน</th><th>พนักงาน</th><th>จัดการ</th></tr></thead>
+      <tbody id="pendingBody"><tr><td colspan="7" style="text-align:center;padding:24px;color:var(--ink3)">กำลังโหลด...</td></tr></tbody>
+    </table></div></div>
+
   </div>
 </div>
 
 </main>
 </div>
 
+<!-- PIN MODAL -->
+<div class="mo" id="pinMo">
+  <div class="md" style="max-width:320px;text-align:center">
+    <div class="md-head" style="justify-content:center;position:relative">
+      <h3>🔑 เข้าสู่โหมด Admin</h3>
+      <button class="close-btn" style="position:absolute;right:0" onclick="closePinModal()">✕</button>
+    </div>
+    <p style="font-size:.85rem;color:var(--ink3);margin-bottom:8px">กรอก PIN 4-6 หลัก</p>
+    <div class="pin-display" id="pinDisplay">
+      <div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div>
+      <div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div>
+      <div class="pin-dot" id="pd4"></div><div class="pin-dot" id="pd5"></div>
+    </div>
+    <div id="pinError" style="color:var(--red);font-size:.82rem;min-height:20px;margin-bottom:8px"></div>
+    <div class="pin-pad">
+      <div class="pin-key" onclick="pinInput('1')">1</div><div class="pin-key" onclick="pinInput('2')">2</div><div class="pin-key" onclick="pinInput('3')">3</div>
+      <div class="pin-key" onclick="pinInput('4')">4</div><div class="pin-key" onclick="pinInput('5')">5</div><div class="pin-key" onclick="pinInput('6')">6</div>
+      <div class="pin-key" onclick="pinInput('7')">7</div><div class="pin-key" onclick="pinInput('8')">8</div><div class="pin-key" onclick="pinInput('9')">9</div>
+      <div class="pin-key del" onclick="pinDel()">⌫</div><div class="pin-key zero" onclick="pinInput('0')">0</div>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="mo" id="editMo">
+  <div class="md">
+    <div class="md-head"><h3>✏️ แก้ไขรายการ</h3><button class="close-btn" onclick="closeModal('editMo')">✕</button></div>
+    <input type="hidden" id="editDocId">
+    <div class="fg">
+      <div class="edit-field ff"><label>วันที่</label><input type="date" id="editDate" class="inp"></div>
+      <div class="edit-field"><label>ประเภท</label><select id="editType" class="inp"><option value="เบิกออก">⬆️ เบิกออก</option><option value="รับเข้า">⬇️ รับเข้า</option><option value="ยืมอุปกรณ์">🔄 ยืมอุปกรณ์</option></select></div>
+      <div class="edit-field"><label>รหัสสินค้า</label><input type="text" id="editPCode" class="inp"></div>
+      <div class="edit-field"><label>ชื่อสินค้า</label><input type="text" id="editPName" class="inp"></div>
+      <div class="edit-field"><label>จำนวน</label><input type="number" id="editQty" class="inp" min="1"></div>
+      <div class="edit-field"><label>หน่วย</label><input type="text" id="editUnit" class="inp"></div>
+      <div class="edit-field"><label>รหัสพนักงาน</label><input type="text" id="editEmpCode" class="inp"></div>
+      <div class="edit-field"><label>ชื่อพนักงาน</label><input type="text" id="editEmpName" class="inp"></div>
+      <div class="edit-field ff"><label>หมายเหตุ</label><textarea id="editNote" class="inp"></textarea></div>
+    </div>
+    <div class="bg"><button class="btn btn-s" onclick="closeModal('editMo')">ยกเลิก</button><button class="btn btn-p" id="editSaveBtn" onclick="saveEdit()">💾 บันทึก</button></div>
+  </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="mo" id="delMo">
+  <div class="md" style="max-width:360px;text-align:center">
+    <div style="font-size:3rem;margin-bottom:12px">🗑️</div>
+    <h3 style="margin-bottom:8px">ยืนยันการลบ?</h3>
+    <p style="font-size:.88rem;color:var(--ink3);margin-bottom:16px">ไม่สามารถกู้คืนได้</p>
+    <div id="delInfo" style="background:var(--rl);border-radius:var(--rs);padding:12px;margin-bottom:18px;font-size:.85rem;font-weight:600;color:var(--red)"></div>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button class="btn btn-s" onclick="closeModal('delMo')">ยกเลิก</button>
+      <button class="btn btn-r" id="delConfirmBtn" onclick="confirmDelete()">🗑️ ลบเลย</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCANNER MODAL -->
 <div class="mo" id="scanMo">
   <div class="md">
-    <div class="md-head"><h3 id="scanTitle">📷 สแกนโค้ด</h3><button class="close-btn" onclick="closeScan()">✕</button></div>
-    <p class="scan-label" id="scanLbl">วางโค้ดให้อยู่ในกรอบ</p>
+    <div class="md-head"><h3 id="scanTitle">📷 สแกน</h3><button class="close-btn" onclick="closeScan()">✕</button></div>
     <div class="tab-row">
       <button class="tab-btn on" id="tab-cam" onclick="switchTab('cam')">📷 กล้อง</button>
       <button class="tab-btn"    id="tab-man" onclick="switchTab('man')">⌨️ กรอกเอง</button>
     </div>
     <div id="tab-cam-content">
-      <div class="scan-status wait" id="scanStatus">🔍 กดปุ่มเพื่อเปิดใช้งานกล้อง</div>
+      <div class="scan-status wait" id="scanStatus">🔍 กดปุ่มด้านล่างเพื่อเปิดกล้อง</div>
       <div class="cam-wrap" id="camWrap" style="display:none">
-        <div class="scan-line"></div><div class="scan-corner tl"></div><div class="scan-corner tr"></div><div class="scan-corner bl"></div><div class="scan-corner br"></div>
-        <video id="camVideo" autoplay playsinline muted></video><canvas id="camCanvas" style="display:none"></canvas>
+        <div class="scan-line"></div>
+        <div class="scan-corner tl"></div><div class="scan-corner tr"></div>
+        <div class="scan-corner bl"></div><div class="scan-corner br"></div>
+        <video id="camVideo" autoplay playsinline muted style="width:100%;display:block"></video>
+        <canvas id="camCanvas" style="display:none"></canvas>
       </div>
-      <div style="margin-bottom:12px;display:flex;gap:8px">
-        <button class="btn btn-p" style="flex:1" id="startCamBtn" onclick="startCamera()">📷 เริ่มกล้อง</button>
-        <select id="camSelect" class="inp" style="font-size:.82rem;flex:1" onchange="switchCamera()"><option value="">-- สลับกล้อง --</option></select>
+      <div style="display:flex;gap:8px;margin-bottom:12px">
+        <button class="btn btn-p" style="flex:1" id="startCamBtn" onclick="startCamera()">📷 เปิดกล้อง</button>
+        <select id="camSelect" class="inp" style="flex:1;font-size:.82rem" onchange="switchCamera()"><option value="">-- กล้อง --</option></select>
       </div>
     </div>
     <div id="tab-man-content" style="display:none">
-      <div class="manual-row"><input type="text" id="manCode" class="inp" placeholder="คีย์รหัสเองที่นี่..." onkeydown="if(event.key==='Enter')confirmManual()"><button class="btn btn-p" onclick="confirmManual()">ยืนยัน</button></div>
+      <div class="manual-row" style="margin-bottom:12px">
+        <input type="text" id="manCode" class="inp" placeholder="กรอกรหัส" onkeydown="if(event.key==='Enter')confirmManual()">
+        <button class="btn btn-p" onclick="confirmManual()">ยืนยัน</button>
+      </div>
     </div>
-    <button class="btn btn-s" style="width:100%;margin-top:8px" onclick="closeScan()">ปิดหน้าต่าง</button>
-  </div>
-</div>
-
-<div class="edit-mo" id="editMo">
-  <div class="edit-md">
-    <div class="md-head"><h3>✏️ แก้ไขข้อมูลประวัติรายการ (ID: <span id="eRecId">—</span>)</h3><button class="close-btn" onclick="closeEditModal()">✕</button></div>
-    <div class="fg" style="margin-top:14px">
-      <div class="fld"><label class="lbl">วันที่</label><input type="date" id="eDate" class="inp"></div>
-      <div class="fld"><label class="lbl">ประเภท</label><select id="eType" class="inp"><option value="เบิกออก">เบิกออก</option><option value="รับเข้า">รับเข้า</option><option value="ยืมอุปกรณ์">ยืมอุปกรณ์</option></select></div>
-    </div>
-    <div class="fg" style="margin-top:12px">
-      <div class="fld"><label class="lbl">รหัสพนักงาน</label><input type="text" id="eEmpCode" class="inp"></div>
-      <div class="fld"><label class="lbl">ชื่อพนักงาน</label><input type="text" id="eEmpName" class="inp"></div>
-    </div>
-    <div class="fg" style="margin-top:12px">
-      <div class="fld"><label class="lbl">รหัสสินค้า</label><input type="text" id="ePCode" class="inp"></div>
-      <div class="fld"><label class="lbl">ชื่อสินค้า</label><input type="text" id="ePName" class="inp"></div>
-    </div>
-    <div class="fg" style="margin-top:12px">
-      <div class="fld"><label class="lbl">จำนวน</label><input type="number" id="eQty" class="qi" style="width:100%;border:1.5px solid var(--line);border-radius:var(--rs);padding:0 12px"></div>
-      <div class="fld"><label class="lbl">หน่วย</label><input type="text" id="eUnit" class="inp"></div>
-    </div>
-    <div class="fld" style="margin-top:12px"><label class="lbl">หมายเหตุ</label><textarea id="eNote" class="inp"></textarea></div>
-    <div class="bg" style="margin-top:20px">
-      <button class="btn btn-s" onclick="closeEditModal()">ยกเลิก</button>
-      <button class="btn btn-p" onclick="submitEditRecord()">💾 บันทึกการเปลี่ยนแปลง</button>
-    </div>
+    <button class="btn btn-s" style="width:100%" onclick="closeScan()">ปิด</button>
   </div>
 </div>
 
 <div class="tc" id="toastC"></div>
 
 <script>
-// 🚨 กำหนด URL ของ Google Apps Script ที่ Deploy เป็น Web App (ทุกคน / Anyone) ที่นี่
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3g720eZ1f0M-S6f363L1G-xJ_I81p3uMInWn4eWvbeLbyh39NreA8rKqZ6DqJ8nO0/exec";
+/* ═══════════════════════════════════
+   CONFIG — Apps Script URL
+═══════════════════════════════════ */
+const API_KEY = 'gasApiUrl';
 
-let scanTarget = 'product';
-let currentStock = 0;
-let videoStream = null;
-let scanInterval = null;
-let barcodeDetector = null;
-let scanActive = false;
-let isAdmin = false;
-let currentPin = '';
-let editingRecordId = null;
-let globalHistoryData = [];
-let globalStockData = [];
-
-/* BRIDGE CORE */
-async function callBackend(action, payloadData = {}) {
-  try {
-    const response = await fetch(SCRIPT_URL, {
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ action: action, payload: payloadData })
-    });
-    return await response.json();
-  } catch (err) {
-    console.error("Fetch Error:", err);
-    toast("❌ ตัดการเชื่อมต่อเซิร์ฟเวอร์ผิดพลาด", "err");
-    throw err;
+function getApiUrl() {
+  return localStorage.getItem(API_KEY) || '';
+}
+function saveApiUrl() {
+  const url = (document.getElementById('adminApiUrl') || document.getElementById('apiUrlInput'))?.value.trim();
+  if (!url || !url.includes('script.google.com')) {
+    toast('❌ URL ไม่ถูกต้อง ต้องเป็น script.google.com', 'err'); return;
   }
+  localStorage.setItem(API_KEY, url);
+  if (document.getElementById('adminApiUrl')) document.getElementById('adminApiUrl').value = url;
+  document.getElementById('apiSetupBanner').style.display = 'none';
+  document.getElementById('apiUrlStatus').textContent = '✅ บันทึกแล้ว: ' + url.slice(0,60) + '...';
+  toast('✅ บันทึก URL แล้ว', 'ok');
+  loadDash();
 }
 
+/* ═══════════════════════════════════
+   FETCH API WRAPPER
+═══════════════════════════════════ */
+async function apiGet(action, params={}) {
+  const base = getApiUrl();
+  if (!base) { showSetupBanner(); throw new Error('ยังไม่ได้ตั้งค่า API URL'); }
+  const q = new URLSearchParams({ action, ...params });
+  const res = await fetch(`${base}?${q}`);
+  const json = await res.json();
+  if (!json.success) throw new Error(json.error || 'API Error');
+  return json.data;
+}
+
+async function apiPost(action, body={}) {
+  const base = getApiUrl();
+  if (!base) { showSetupBanner(); throw new Error('ยังไม่ได้ตั้งค่า API URL'); }
+  const res = await fetch(base, {
+    method : 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body   : JSON.stringify({ action, ...body }),
+  });
+  const json = await res.json();
+  if (!json.success) throw new Error(json.error || 'API Error');
+  return json.data;
+}
+
+function showSetupBanner() {
+  document.getElementById('apiSetupBanner').style.display = 'flex';
+}
+
+/* ═══════════════════════════════════
+   STATE
+═══════════════════════════════════ */
+let scanTarget      = 'product';
+let currentStock    = 0;
+let scanActive      = false;
+let videoStream     = null;
+let scanInterval    = null;
+let barcodeDetector = null;
+let isAdmin         = false;
+let pinBuffer       = '';
+let histData        = [];
+let deleteDocId     = null;
+
+const ADMIN_PIN_KEY = 'adminPin';
+const DEFAULT_PIN   = '1234';
+
+/* ═══════════════════════════════════
+   INIT
+═══════════════════════════════════ */
 window.onload = () => {
   document.getElementById('fDate').value = new Date().toISOString().split('T')[0];
-  tick(); setInterval(tick, 1000);
-  initSystem();
+  tick(); setInterval(tick,1000);
+  applySettings();
+  loadContactPreview();
+  if (!getApiUrl()) showSetupBanner();
+  else loadDash();
+  if ('NDEFReader' in window) document.getElementById('nfcBtn').style.display='flex';
+  // โหลด URL เข้าช่อง admin
+  const u = getApiUrl();
+  if (u && document.getElementById('adminApiUrl')) document.getElementById('adminApiUrl').value = u;
 };
 
 function tick() {
-  const n = new Date();
-  const d = ['อา','จ','อ','พ','พฤ','ศ','ส'];
-  document.getElementById('topDate').textContent = `${d[n.getDay()]} ${n.getDate()}/${n.getMonth()+1}/${n.getFullYear()+543}`;
-  document.getElementById('topTime').textContent = n.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+  const n=new Date(), d=['อา','จ','อ','พ','พฤ','ศ','ส'];
+  document.getElementById('topDate').textContent=`${d[n.getDay()]} ${n.getDate()}/${n.getMonth()+1}/${n.getFullYear()+543}`;
+  document.getElementById('topTime').textContent=n.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
 }
 
-async function initSystem() {
-  if(SCRIPT_URL.includes("วาง_URL")) return;
-  await loadDash();
+/* ═══════════════════════════════════
+   SETTINGS
+═══════════════════════════════════ */
+function getSetting(k,def=false){const v=localStorage.getItem('setting_'+k);return v===null?def:JSON.parse(v);}
+function saveSetting(k,v){localStorage.setItem('setting_'+k,JSON.stringify(v));toast('💾 บันทึกการตั้งค่าแล้ว');}
+function applySettings(){
+  if(document.getElementById('settingRequireApprove'))document.getElementById('settingRequireApprove').checked=getSetting('requireApprove',false);
+  if(document.getElementById('settingShowStock2'))document.getElementById('settingShowStock2').checked=getSetting('showStock2',true);
 }
+function getStoredPin(){return localStorage.getItem(ADMIN_PIN_KEY)||DEFAULT_PIN;}
 
-function go(id) {
-  document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
-  document.querySelectorAll('.si').forEach(s => s.classList.remove('on'));
+/* ═══════════════════════════════════
+   NAV
+═══════════════════════════════════ */
+function go(id){
+  if(id==='admin'&&!isAdmin){openPinModal();return;}
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.si').forEach(s=>s.classList.remove('on'));
   document.getElementById('pg-'+id).classList.add('on');
-  const map = {dash:0,form:1,hist:2,lookup:3,stock:4,admin:5};
+  const map={dash:0,form:1,hist:2,lookup:3,admin:4};
   document.querySelectorAll('.si')[map[id]]?.classList.add('on');
   if(id==='hist') loadHist();
   if(id==='dash') loadDash();
-  if(id==='stock') loadStockData();
-  if(id==='admin' && isAdmin) refreshAdminPanels();
+  if(id==='admin'){loadPending();loadContactPreview();applySettings();const u=getApiUrl();if(document.getElementById('adminApiUrl'))document.getElementById('adminApiUrl').value=u||'';}
+  if(nfcRunning) stopNFC();
 }
 
-/* SETTERS & UI WIDGETS */
-function setType(t) {
-  document.getElementById('fType').value = t;
-  document.querySelectorAll('#typeBtns .tb').forEach(b => {
-    b.classList.remove('t-out','t-in','t-loan');
-    if (b.dataset.t===t) b.classList.add(t==='เบิกออก'?'t-out':t==='รับเข้า'?'t-in':'t-loan');
-  });
+/* ═══════════════════════════════════
+   PIN / ADMIN
+═══════════════════════════════════ */
+function openPinModal(){pinBuffer='';updatePinDisplay();document.getElementById('pinError').textContent='';document.getElementById('pinMo').classList.add('show');}
+function closePinModal(){document.getElementById('pinMo').classList.remove('show');}
+function pinInput(d){if(pinBuffer.length>=6)return;pinBuffer+=d;updatePinDisplay();if(pinBuffer.length>=4)setTimeout(checkPin,300);}
+function pinDel(){pinBuffer=pinBuffer.slice(0,-1);updatePinDisplay();document.getElementById('pinError').textContent='';}
+function updatePinDisplay(){for(let i=0;i<6;i++){const dot=document.getElementById('pd'+i);dot.classList.toggle('filled',i<pinBuffer.length);dot.classList.remove('error');}}
+function checkPin(){
+  if(pinBuffer===getStoredPin()){closePinModal();loginAdmin();}
+  else if(pinBuffer.length>=6){
+    for(let i=0;i<6;i++)document.getElementById('pd'+i).classList.add('error');
+    document.getElementById('pinError').textContent='❌ PIN ไม่ถูกต้อง';
+    setTimeout(()=>{pinBuffer='';updatePinDisplay();document.getElementById('pinError').textContent='';},1200);
+  }
 }
-function tog(el, grp) {
-  document.getElementById(grp+'Btns').querySelectorAll('.tgb').forEach(b => b.classList.remove('a-in','a-vac','a-off','a-site'));
-  const v = el.dataset.v;
-  document.getElementById('f'+grp.charAt(0).toUpperCase()+grp.slice(1)).value = v;
-  if (grp==='status') el.classList.add(v==='ใช้งานอยู่'?'a-in':'a-vac');
-  else el.classList.add(v==='ออฟฟิศ'?'a-off':'a-site');
+function loginAdmin(){
+  isAdmin=true;
+  document.getElementById('adminChip').style.display='flex';
+  document.querySelectorAll('.admin-only').forEach(el=>el.classList.add('show'));
+  document.querySelectorAll('.admin-badge').forEach(el=>el.classList.add('show'));
+  document.getElementById('actionColHead').style.display='';
+  document.getElementById('adminActionsLabel').style.display='flex';
+  toast('🔑 เข้าสู่โหมด Admin','ok');
+  go('admin');
 }
-function adjQ(d) {
-  const el = document.getElementById('fQty');
-  el.value = Math.max(1, parseInt(el.value||1)+d);
+function logoutAdmin(){
+  if(!confirm('ออกจากโหมด Admin?'))return;
+  isAdmin=false;
+  document.getElementById('adminChip').style.display='none';
+  document.querySelectorAll('.admin-only').forEach(el=>el.classList.remove('show'));
+  document.querySelectorAll('.admin-badge').forEach(el=>el.classList.remove('show'));
+  document.getElementById('actionColHead').style.display='none';
+  document.getElementById('adminActionsLabel').style.display='none';
+  go('dash');toast('ออกจากโหมด Admin');
+}
+function changePin(){
+  const old=document.getElementById('oldPin').value,n1=document.getElementById('newPin').value,n2=document.getElementById('confirmPin').value;
+  if(old!==getStoredPin()){toast('❌ PIN ปัจจุบันไม่ถูกต้อง','err');return;}
+  if(n1.length<4){toast('❌ PIN ใหม่ต้องมีอย่างน้อย 4 หลัก','err');return;}
+  if(n1!==n2){toast('❌ ยืนยัน PIN ไม่ตรงกัน','err');return;}
+  localStorage.setItem(ADMIN_PIN_KEY,n1);
+  ['oldPin','newPin','confirmPin'].forEach(id=>document.getElementById(id).value='');
+  toast('✅ เปลี่ยน PIN สำเร็จ','ok');
 }
 
-/* LOOKUPS */
-let ptimer;
-function onProd(v) {
-  clearTimeout(ptimer);
-  if (!v.trim()) { hideProd(); return; }
-  ptimer = setTimeout(() => lookupProd(v.trim()), 600);
-}
-async function lookupProd(code) {
-  try {
-    const p = await callBackend('getProductByCode', { code: code });
-    if (!p || p.error) { hideProd(); toast('❌ ไม่พบรหัสบาร์โค้ดนี้','err'); return; }
-    currentStock = Number(p.stock)||0;
-    document.getElementById('fPName').value = p.name || '';
-    document.getElementById('fPSize').value = p.size || '';
-    document.getElementById('fUnit').value  = p.unit || '';
-    document.getElementById('fStock').value = p.stock ?? '0';
+/* ═══════════════════════════════════
+   TYPE / TOGGLE / QTY
+═══════════════════════════════════ */
+function setType(t){document.getElementById('fType').value=t;document.querySelectorAll('#typeBtns .tb').forEach(b=>{b.classList.remove('t-out','t-in','t-loan');if(b.dataset.t===t)b.classList.add(t==='เบิกออก'?'t-out':t==='รับเข้า'?'t-in':'t-loan');});}
+function tog(el,grp){document.getElementById(grp+'Btns').querySelectorAll('.tgb').forEach(b=>b.classList.remove('a-in','a-vac','a-off','a-site'));const v=el.dataset.v;document.getElementById('f'+grp.charAt(0).toUpperCase()+grp.slice(1)).value=v;if(grp==='status')el.classList.add(v==='ใช้งานอยู่'?'a-in':'a-vac');else el.classList.add(v==='ออฟฟิศ'?'a-off':'a-site');}
+function adjQ(d){const el=document.getElementById('fQty');el.value=Math.max(1,parseInt(el.value||1)+d);}
+
+/* ═══════════════════════════════════
+   PRODUCT / EMPLOYEE (fetch)
+═══════════════════════════════════ */
+let ptimer,etimer;
+function onProd(v){clearTimeout(ptimer);if(!v.trim()){hideProd();return;}ptimer=setTimeout(()=>lookupProd(v.trim()),700);}
+async function lookupProd(code){
+  try{const p=await apiGet('product',{code});
+    if(!p){hideProd();toast('ไม่พบรหัสสินค้า: '+code,'err');return;}
+    currentStock=Number(p.stock)||0;
+    document.getElementById('fPName').value=p.name||'';document.getElementById('fPSize').value=p.size||'';
+    document.getElementById('fUnit').value=p.unit||'';document.getElementById('fStock').value=p.stock??'';
     showProd(p);
-  } catch (e) { hideProd(); }
+  }catch(e){hideProd();toast(e.message,'err');}
 }
-function showProd(p) {
-  document.getElementById('ppNm').textContent = p.name || '—';
-  document.getElementById('ppSz').textContent = p.size || '—';
-  document.getElementById('ppCat').textContent = p.category || '—';
-  document.getElementById('ppUn').textContent = p.unit || '—';
-  const s = Number(p.stock)||0;
-  const el = document.getElementById('ppSt'); el.textContent = s;
-  el.className = 'pcs-n'+(s<=0?' danger':s<=5?' warn':'');
-  const pct = Math.min(100, Math.round(s/50*100));
-  const bar = document.getElementById('ppBar'); bar.style.width = pct+'%';
-  bar.className = 'bar-f'+(s<=0?' low':s<=5?' warn':' ok');
+function showProd(p){
+  document.getElementById('ppNm').textContent=p.name||'—';document.getElementById('ppSz').textContent=p.size||'—';
+  document.getElementById('ppCat').textContent=p.category||'—';document.getElementById('ppUn').textContent=p.unit||'—';
+  const s=Number(p.stock)||0;const el=document.getElementById('ppSt');
+  el.textContent=s;el.className='pcs-n'+(s<=0?' danger':s<=5?' warn':'');
+  const pct=Math.min(100,Math.round(s/50*100));const bar=document.getElementById('ppBar');
+  bar.style.width=pct+'%';bar.className='bar-f'+(s<=0?' low':s<=5?' warn':' ok');
   document.getElementById('prodCard').classList.add('show');
 }
-function hideProd() { currentStock=0; document.getElementById('prodCard').classList.remove('show'); }
+function hideProd(){currentStock=0;document.getElementById('prodCard').classList.remove('show');}
 
-let etimer;
-function onEmp(v) {
-  clearTimeout(etimer);
-  if (!v.trim()) { hideEmp(); return; }
-  etimer = setTimeout(() => lookupEmp(v.trim()), 600);
-}
-async function lookupEmp(code) {
-  try {
-    const e = await callBackend('getEmployeeByCode', { code: code });
-    if (!e || e.error) {
-      if(document.getElementById('cfgEmp').checked) {
-        hideEmp(); toast('❌ รหัสพนักงานไม่ได้อยู่ในระบบ','err');
-      }
-      return;
-    }
-    document.getElementById('fEmpName').value = e.name || '';
-    document.getElementById('fDept').value = e.department || '';
+function onEmp(v){clearTimeout(etimer);if(!v.trim()){hideEmp();return;}etimer=setTimeout(()=>lookupEmp(v.trim()),700);}
+async function lookupEmp(code){
+  try{const e=await apiGet('employee',{code});
+    if(!e){hideEmp();toast('ไม่พบรหัสพนักงาน: '+code,'err');return;}
+    document.getElementById('fEmpName').value=e.name||'';document.getElementById('fDept').value=e.department||'';
     showEmp(e);
-  } catch (err) { hideEmp(); }
+  }catch(ex){hideEmp();toast(ex.message,'err');}
 }
-function showEmp(e) {
-  const nm = e.name||'?';
-  document.getElementById('empAv').textContent = nm.charAt(0);
-  document.getElementById('empNm').textContent = nm;
-  document.getElementById('empDp').textContent = [e.department, e.position].filter(Boolean).join(' · ');
-  document.getElementById('empCard').classList.add('show');
-}
-function hideEmp() { document.getElementById('empCard').classList.remove('show'); }
+function showEmp(e){const nm=e.name||'?';document.getElementById('empAv').textContent=nm.charAt(0);document.getElementById('empNm').textContent=nm;document.getElementById('empDp').textContent=[e.department,e.position].filter(Boolean).join(' · ');document.getElementById('empCard').classList.add('show');}
+function hideEmp(){document.getElementById('empCard').classList.remove('show');}
 
-/* CAMERA SCANNER CODE */
-function openScan(target) {
-  scanTarget = target;
-  document.getElementById('scanTitle').textContent = target === 'product' ? '📷 สแกนบาร์โค้ดสินค้า' : '📷 สแกน QR รหัสพนักงาน';
-  document.getElementById('scanLbl').textContent = target === 'product' ? 'วางบาร์โค้ดให้อยู่ในกรอบสแกน' : 'วาง QR Code พนักงานลงในกรอบสแกน';
-  document.getElementById('scanMo').classList.add('show');
-  switchTab('cam');
+/* ═══════════════════════════════════
+   HISTORY (fetch)
+═══════════════════════════════════ */
+async function loadHist(){
+  const tb=document.getElementById('histBody');
+  tb.innerHTML='<tr><td colspan="12" style="text-align:center;padding:36px;color:var(--ink3)"><span class="sp"></span> กำลังโหลด...</td></tr>';
+  try{histData=await apiGet('history');renderHist(histData);}
+  catch(e){tb.innerHTML=`<tr><td colspan="12" style="text-align:center;padding:36px;color:red">❌ ${e.message}</td></tr>`;}
 }
-function closeScan() {
-  stopCamera();
-  document.getElementById('scanMo').classList.remove('show');
-  setScanStatus('wait', '🔍 กดปุ่มเพื่อเปิดใช้งานกล้อง');
-  document.getElementById('camWrap').style.display = 'none';
+function renderHist(rows){
+  const tb=document.getElementById('histBody');
+  document.getElementById('histCountLabel').textContent=`(${rows.length} รายการ)`;
+  if(!rows.length){tb.innerHTML='<tr><td colspan="12" style="text-align:center;padding:36px;color:var(--ink3)">ยังไม่มีประวัติ</td></tr>';return;}
+  tb.innerHTML=rows.map(r=>{
+    const approved=r.approved==='อนุมัติแล้ว';
+    const statusBdg=approved?`<span class="bdg bapprove">✅ อนุมัติ</span>`:`<span class="bdg bpending">⏳ รอ</span>`;
+    const acts=isAdmin?`<td><div style="display:flex;gap:4px">
+      <button class="act-btn act-edit" onclick='openEditModal(${JSON.stringify(r).replace(/'/g,"&#39;")})'>✏️</button>
+      <button class="act-btn act-del"  onclick="openDelModal('${r.docId}','${(r.productName||'').replace(/'/g,'')}','${r.date||''}')">🗑️</button>
+      ${!approved?`<button class="act-btn act-approve" onclick="approveRow('${r.docId}',this)">✅</button>`:`<button class="act-btn act-approved" disabled>✅</button>`}
+    </div></td>`:'<td style="display:none"></td>';
+    return `<tr class="${approved?'row-approved':''}">
+      <td style="font-family:monospace;font-size:.76rem">${r.docId||'—'}</td>
+      <td>${r.date||'—'}</td><td>${badge(r.type)}</td>
+      <td>${r.productName||'—'}</td>
+      <td style="font-family:monospace;font-weight:700">${r.qty||0}</td>
+      <td>${r.unit||'—'}</td>
+      <td style="font-family:monospace;font-weight:700;color:var(--g)">${r.stock||'—'}</td>
+      <td>${r.empName||'—'}</td><td>${r.department||'—'}</td>
+      <td style="font-size:.8rem;color:var(--ink3)">${r.note||'—'}</td>
+      <td>${statusBdg}</td>${acts}
+    </tr>`;
+  }).join('');
+  document.getElementById('actionColHead').style.display=isAdmin?'':'none';
 }
-function switchTab(tab) {
-  document.getElementById('tab-cam').classList.toggle('on', tab === 'cam');
-  document.getElementById('tab-man').classList.toggle('on', tab === 'man');
-  document.getElementById('tab-cam-content').style.display = tab === 'cam' ? 'block' : 'none';
-  document.getElementById('tab-man-content').style.display = tab === 'man' ? 'block' : 'none';
-  if (tab === 'man') { stopCamera(); setTimeout(() => document.getElementById('manCode').focus(), 150); }
-}
-function setScanStatus(cls, text) {
-  const el = document.getElementById('scanStatus');
-  if (el) { el.className = 'scan-status ' + cls; el.textContent = text; }
-}
-async function startCamera() {
-  if (scanActive) return;
-  setScanStatus('wait', '🔍 กำลังเปิดสิทธิ์ใช้งานกล้อง...');
-  try {
-    videoStream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } }
-    });
-    const video = document.getElementById('camVideo');
-    video.srcObject = videoStream;
-    await video.play();
-    document.getElementById('camWrap').style.display = 'block';
-    document.getElementById('startCamBtn').textContent = '✅ กล้องเปิดอยู่';
-    document.getElementById('startCamBtn').disabled = true;
-    scanActive = true;
-    loadCameraList();
-
-    if ('BarcodeDetector' in window) {
-      barcodeDetector = new BarcodeDetector({ formats: ['qr_code','ean_13','ean_8','code_128','code_39','upc_a','upc_e'] });
-      startBarcodeLoop();
-      setScanStatus('wait', '🔍 พร้อมสแกนข้อมูลอัตโนมัติ');
-    } else {
-      setScanStatus('err', '⚠️ เบราว์เซอร์ไม่มีสแกนเนอร์ระบบอัตโนมัติ แนะนำพิมพ์คีย์ข้อมูลแทน');
-      setTimeout(() => switchTab('man'), 1500);
-    }
-  } catch (err) {
-    setScanStatus('err', '❌ ไม่สามารถดึงภาพกล้องได้ กรุณาตรวจเช็คสิทธิ์');
-    setTimeout(() => switchTab('man'), 1500);
-  }
-}
-function startBarcodeLoop() {
-  const video = document.getElementById('camVideo');
-  const canvas = document.getElementById('camCanvas');
-  const ctx = canvas.getContext('2d');
-  scanInterval = setInterval(async () => {
-    if (!scanActive || !videoStream || !barcodeDetector) return;
-    try {
-      if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        canvas.width = video.videoWidth; canvas.height = video.videoHeight;
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const barcodes = await barcodeDetector.detect(canvas);
-        if (barcodes.length > 0) handleScanSuccess(barcodes[0].rawValue);
-      }
-    } catch (e) { console.error(e); }
-  }, 300);
-}
-function handleScanSuccess(val) {
-  setScanStatus('ok', '🎉 พบรหัส: ' + val);
-  if (scanTarget === 'product') {
-    document.getElementById('fPCode').value = val; lookupProd(val);
-  } else {
-    document.getElementById('fEmpCode').value = val; lookupEmp(val);
-  }
-  setTimeout(closeScan, 600);
-}
-function stopCamera() {
-  scanActive = false;
-  if (scanInterval) { clearInterval(scanInterval); scanInterval = null; }
-  if (videoStream) { videoStream.getTracks().forEach(track => track.stop()); videoStream = null; }
-  const video = document.getElementById('camVideo'); if (video) video.srcObject = null;
-  const b = document.getElementById('startCamBtn'); if (b) { b.textContent = '📷 เริ่มกล้อง'; b.disabled = false; }
-}
-async function loadCameraList() {
-  try {
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const videoDevices = devices.filter(d => d.kind === 'videoinput');
-    const select = document.getElementById('camSelect');
-    select.innerHTML = '<option value="">-- สลับกล้อง --</option>';
-    videoDevices.forEach((dev, idx) => {
-      const opt = document.createElement('option'); opt.value = dev.deviceId;
-      opt.textContent = dev.label || `กล้องตัวที่ ${idx + 1}`; select.appendChild(opt);
-    });
-  } catch (e) {}
-}
-async function switchCamera() {
-  const id = document.getElementById('camSelect').value; if (!id) return;
-  stopCamera(); setScanStatus('wait', '🔄 สลับช่องสัญญาณกล้อง...');
-  try {
-    videoStream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: id } } });
-    const video = document.getElementById('camVideo'); video.srcObject = videoStream;
-    await video.play(); document.getElementById('camWrap').style.display = 'block';
-    scanActive = true; if (barcodeDetector) startBarcodeLoop();
-    setScanStatus('wait', '🔍 สลับกล้องสำเร็จแล้ว');
-  } catch (err) { setScanStatus('err', '❌ ดึงสิทธิ์สลับกล้องผิดพลาด'); }
-}
-function confirmManual() {
-  const val = document.getElementById('manCode').value.trim();
-  if (!val) return; document.getElementById('manCode').value = ''; handleScanSuccess(val);
+function filterHist(){
+  const q=(document.getElementById('histSearch').value||'').toLowerCase();
+  const t=document.getElementById('histTypeFilter').value;
+  renderHist(histData.filter(r=>(!q||(r.productName||'').toLowerCase().includes(q)||(r.empName||'').toLowerCase().includes(q)||(r.empCode||'').includes(q))&&(!t||r.type===t)));
 }
 
-/* SUBMIT TRANSACTION */
-async function save() {
-  const type = document.getElementById('fType').value;
-  const pCode = document.getElementById('fPCode').value.trim();
-  const pName = document.getElementById('fPName').value.trim();
-  const qty = parseInt(document.getElementById('fQty').value || 0);
-
-  if (!pCode || !pName) { toast('❌ ข้อมูลสินค้าห้ามปล่อยว่าง', 'err'); return; }
-  if (qty <= 0) { toast('❌ จำนวนการเบิกจ่ายต้องมากกว่า 0', 'err'); return; }
-  if (type === 'เบิกออก' && qty > currentStock) { toast(`❌ สต็อกไม่พอเบิก (มีอยู่คลังเพียง ${currentStock})`, 'err'); return; }
-
-  const btn = document.getElementById('saveBtn'); btn.disabled = true; btn.innerHTML = '<div class="sp"></div> บันทึก...';
-  const payload = {
-    date: document.getElementById('fDate').value, type: type,
-    empCode: document.getElementById('fEmpCode').value.trim(), empName: document.getElementById('fEmpName').value.trim(), dept: document.getElementById('fDept').value.trim(),
-    pCode: pCode, pName: pName, size: document.getElementById('fPSize').value.trim(), qty: qty, unit: document.getElementById('fUnit').value.trim(),
-    note: document.getElementById('fNote').value.trim(), status: document.getElementById('fStatus').value, location: document.getElementById('fLocation').value
-  };
-  try {
-    const res = await callBackend('submitFormTransaction', { data: payload });
-    btn.disabled = false; btn.innerHTML = '💾 บันทึก';
-    if (res.success) { toast('🎉 บันทึกรายการลงระบบสำเร็จ', 'ok'); resetF(); go('dash'); }
-    else { toast('❌ ล้มเหลว: ' + res.message, 'err'); }
-  } catch (e) { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
-}
-function resetF() {
-  document.getElementById('fPCode').value = ''; document.getElementById('fPName').value = '';
-  document.getElementById('fPSize').value = ''; document.getElementById('fQty').value = '1';
-  document.getElementById('fUnit').value = ''; document.getElementById('fStock').value = '';
-  document.getElementById('fNote').value = ''; hideProd();
-}
-
-/* LOAD DASHBOARD */
-async function loadDash() {
-  try {
-    const res = await callBackend('getDashboardData');
-    document.getElementById('d-total').textContent = res.total || '0';
-    document.getElementById('d-low').textContent = res.low || '0';
-    document.getElementById('d-out').textContent = res.out || '0';
-    document.getElementById('d-today').textContent = res.today || '0';
-    
-    if (res.announcement) {
-      document.getElementById('announceText').textContent = res.announcement;
-      document.getElementById('announceBanner').style.display = 'flex';
-      document.getElementById('announceInput').value = res.announcement;
-    } else {
-      document.getElementById('announceBanner').style.display = 'none';
-    }
-
-    let html = '';
-    if(!res.recent || res.recent.length === 0) {
-      html = '<tr><td colspan="7" style="text-align:center">ไม่มีความเคลื่อนไหววันนี้</td></tr>';
-    } else {
-      res.recent.forEach(r => {
-        let cls = r.type === 'เบิกออก' ? 'bo' : r.type === 'รับเข้า' ? 'bi' : 'bl2';
-        html += `<tr><td>${r.date}</td><td><span class="bdg ${cls}">${r.type}</span></td><td><b>${r.item}</b></td><td>${r.qty}</td><td>${r.stockAfter}</td><td>${r.empName||'—'}</td><td>${r.dept||'—'}</td></tr>`;
-      });
-    }
-    document.getElementById('d-tbody').innerHTML = html;
-  } catch (e) { document.getElementById('d-tbody').innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--red)">ไม่สามารถดึงภาพรวมบอร์ดได้</td></tr>'; }
-}
-
-/* LOAD HISTORY & ADMIN CONTROLS */
-async function loadHist() {
-  document.getElementById('histBody').innerHTML = '<tr><td colspan="14" style="text-align:center;padding:30px"><div class="sp"></div> กำลังดึงประวัติ...</td></tr>';
-  try {
-    globalHistoryData = await callBackend('getHistoryData');
-    renderHistoryTable();
-  } catch (e) { document.getElementById('histBody').innerHTML = '<tr><td colspan="14" style="text-align:center;color:var(--red)">เกิดข้อผิดพลาดในการดึงไฟล์ประวัติ</td></tr>'; }
-}
-function renderHistoryTable() {
-  document.getElementById('histAdminNote').style.display = isAdmin ? 'none' : 'inline';
-  document.querySelectorAll('.admin-action-cols').forEach(el => el.style.display = isAdmin ? 'table-cell' : 'none');
-  
-  let html = '';
-  if(!globalHistoryData || globalHistoryData.length === 0) {
-    html = '<tr><td colspan="14" style="text-align:center">ไม่พบรายการในประวัติคลัง</td></tr>';
-  } else {
-    globalHistoryData.forEach(r => {
-      let cls = r.type === 'เบิกออก' ? 'bo' : r.type === 'รับเข้า' ? 'bi' : 'bl2';
-      let statusAppv = r.approved === 'อนุมัติแล้ว' ? '<span class="apv-ok">อนุมัติแล้ว</span>' : r.approved === 'ปฏิเสธ' ? '<span class="apv-no">ปฏิเสธ</span>' : '<span class="apv-wait">รอนุมัติ</span>';
-      
-      html += `<tr>
-        <td>${r.id}</td><td>${r.date}</td><td><span class="bdg ${cls}">${r.type}</span></td>
-        <td style="font-family:monospace">${r.pCode}</td><td><b>${r.pName}</b></td><td>${r.qty}</td><td>${r.unit}</td><td>${r.stockAfter}</td>
-        <td style="font-family:monospace">${r.empCode||'—'}</td><td>${r.empName||'—'}</td><td>${r.dept||'—'}</td><td>${r.note||'—'}</td><td>${r.approved ? statusAppv : '✅ อัตโนมัติ'}</td>
-        ${isAdmin ? `<td class="admin-action-cols"><button class="btn btn-s btn-sm" style="background:var(--bl);color:var(--blue);border:none" onclick="openEditModal('${r.id}')">✏️</button> <button class="btn btn-r btn-sm" style="padding:6px 10px" onclick="deleteRecord('${r.id}')">🗑️</button></td>` : ''}
-      </tr>`;
-    });
-  }
-  document.getElementById('histBody').innerHTML = html;
-  if(isAdmin) { document.querySelectorAll('.admin-action-cols').forEach(el => el.style.display = 'table-cell'); }
-}
-
-/* EMPLOYEE DATABASE LOOKUP PAGE */
-async function searchEmpData() {
-  const code = document.getElementById('lookupEmpInput').value.trim();
-  if(!code) { toast('❌ กรุณาป้อนรหัสพนักงานก่อนสแกนค้นหา', 'err'); return; }
-  try {
-    const res = await callBackend('getEmployeeHistoryData', { empCode: code });
-    if(res.error) { toast('❌ ไม่พบรหัสพนักงานนี้ในประวัติระบบ', 'err'); return; }
-    
-    document.getElementById('lEmpAv').textContent = res.name ? res.name.charAt(0) : '?';
-    document.getElementById('lEmpNm').textContent = res.name || 'ไม่ระบุชื่อ';
-    document.getElementById('lEmpDp').textContent = res.department || 'ไม่ระบุแผนก';
-    document.getElementById('lEmpCd').textContent = `ID: ${code}`;
-    document.getElementById('lookupProfile').style.display = 'flex';
-    
-    let html = '';
-    if(!res.history || res.history.length === 0) {
-      html = '<tr><td colspan="7" style="text-align:center;padding:20px">พนักงานคนนี้ไม่มีประวัติรายการเบิกคลัง</td></tr>';
-    } else {
-      res.history.forEach(h => {
-        let cls = h.type === 'เบิกออก' ? 'bo' : h.type === 'รับเข้า' ? 'bi' : 'bl2';
-        html += `<tr><td>${h.date}</td><td><span class="bdg ${cls}">${h.type}</span></td><td>${h.pCode}</td><td><b>${h.pName}</b></td><td>${h.qty}</td><td>${h.unit}</td><td>${h.note||'—'}</td></tr>`;
-      });
-    }
-    document.getElementById('lookupTableBody').innerHTML = html;
-    document.getElementById('lookupResults').style.display = 'block';
-  } catch(e) {}
-}
-
-/* STOCK INVENTORY VIEW PAGE */
-async function loadStockData() {
-  try {
-    globalStockData = await callBackend('getStockInventoryReport');
-    renderStockTable(globalStockData);
-  } catch(e) { document.getElementById('stockTableBody').innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--red)">ไม่สามารถดึงข้อมูลสต็อกแยกหน้าได้</td></tr>'; }
-}
-function renderStockTable(data) {
-  let html = '';
-  if(!data || data.length === 0) {
-    html = '<tr><td colspan="7" style="text-align:center">ไม่พบรายการฐานข้อมูลสินค้า</td></tr>';
-  } else {
-    data.forEach(s => {
-      const qty = Number(s.stock)||0;
-      let badge = `<span class="stock-badge sb-ok">✅ ปกติ</span>`;
-      if(qty <= 0) badge = `<span class="stock-badge sb-low">🚫 หมดคลัง</span>`;
-      else if(qty <= 5) badge = `<span class="stock-badge sb-warn">⚠️ ใกล้หมด</span>`;
-      
-      html += `<tr>
-        <td style="font-family:monospace">${s.code}</td><td><b>${s.name}</b></td><td>${s.size||'—'}</td><td>${s.category||'—'}</td>
-        <td style="font-family:monospace;font-weight:700">${qty}</td><td>${s.unit||'ชิ้น'}</td><td>${badge}</td>
-      </tr>`;
-    });
-  }
-  document.getElementById('stockTableBody').innerHTML = html;
-}
-function filterStockTable() {
-  const query = document.getElementById('stockSearch').value.toLowerCase().trim();
-  if(!query) { renderStockTable(globalStockData); return; }
-  const filtered = globalStockData.filter(s => s.name.toLowerCase().includes(query) || s.code.toLowerCase().includes(query));
-  renderStockTable(filtered);
-}
-
-/* ADMIN PANEL SECURITY KEYPAD */
-function pressPin(k) {
-  if (k === 'del') { currentPin = currentPin.slice(0, -1); }
-  else if (k === 'ok') { checkAdminPin(); return; }
-  else { if(currentPin.length < 4) currentPin += k; }
-  
-  const dots = document.querySelectorAll('.pin-dot');
-  dots.forEach((d, idx) => d.classList.toggle('filled', idx < currentPin.length));
-}
-async function checkAdminPin() {
-  if(currentPin.length < 4) { toast('❌ กรุณาป้อน PIN ให้ครบ 4 หลัก', 'err'); return; }
-  try {
-    const res = await callBackend('verifyAdminPin', { pin: currentPin });
-    if(res.verified) {
-      isAdmin = true; toast('🔓 ปลดล็อกสิทธิ์แอดมินระบบเรียบร้อย', 'ok');
-      document.getElementById('adminLock').style.display = 'none';
-      document.getElementById('adminContent').style.display = 'block';
-      refreshAdminPanels();
-    } else {
-      toast('❌ รหัสผ่าน PIN ไม่ถูกต้อง', 'err'); currentPin = ''; pressPin('');
-    }
-  } catch(e) { currentPin = ''; pressPin(''); }
-}
-function switchAdminTab(t) {
-  document.getElementById('at-conf').classList.toggle('on', t==='conf');
-  document.getElementById('at-appv').classList.toggle('on', t==='appv');
-  document.getElementById('ap-conf').style.display = t==='conf'?'block':'none';
-  document.getElementById('ap-appv').style.display = t==='appv'?'block':'none';
-}
-async function refreshAdminPanels() {
-  try {
-    const config = await callBackend('getSystemConfig');
-    document.getElementById('cfgStock').checked = config.showStockTab || false;
-    document.getElementById('cfgEmp').checked = config.strictEmployeeCheck || false;
-    triggerConfigUI(config.showStockTab);
-
-    const pending = await callBackend('getPendingApprovalList');
-    let html = '';
-    if(!pending || pending.length === 0) {
-      html = '<p style="text-align:center;padding:24px;color:var(--ink3)">ไม่มีรายการเบิกจ่ายที่รอนุมัติในระบบขณะนี้</p>';
-    } else {
-      pending.forEach(p => {
-        html += `<div class="pending-item" id="p-item-${p.id}">
-          <div style="display:flex;justify-content:between;align-items:start">
-            <div>
-              <p style="font-weight:700;font-size:.95rem">${p.empName} ขอเบิก <b>${p.pName}</b></p>
-              <small style="color:var(--ink3);display:block;margin-top:2px">จำนวน: ${p.qty} ${p.unit} | แผนก: ${p.dept} | สถานที่: ${p.location}</small>
-              <small style="color:var(--ink4);font-size:.7rem;font-family:monospace">ID รายการ: ${p.id} · วันที่ขอ: ${p.date}</small>
-            </div>
-          </div>
-          <div class="pending-actions">
-            <button class="btn btn-p btn-sm" onclick="approveRecord('${p.id}', 'อนุมัติแล้ว')">✔️ อนุมัติ</button>
-            <button class="btn btn-r btn-sm" onclick="approveRecord('${p.id}', 'ปฏิเสธ')">❌ ปฏิเสธ</button>
-          </div>
-        </div>`;
-      });
-    }
-    document.getElementById('pendingContainer').innerHTML = html;
-  } catch(e) {}
-}
-function triggerConfigUI(showStock) {
-  document.getElementById('siStock').style.display = showStock ? 'flex' : 'none';
-  document.getElementById('qlStock').style.display = showStock ? 'flex' : 'none';
-}
-async function toggleConfig(key, val) {
-  try { await callBackend('updateSystemConfig', { key: key, value: val }); toast('💾 อัปเดตการตั้งค่าแล้ว', 'ok'); if(key==='stock') triggerConfigUI(val); } catch(e){}
-}
-async function saveAnnounce() {
-  const txt = document.getElementById('announceInput').value.trim();
-  try { await callBackend('updateAnnouncement', { text: txt }); toast('📢 อัปเดตประกาศเรียบร้อย', 'ok'); loadDash(); } catch(e){}
-}
-async function clearAnnounce() {
-  document.getElementById('announceInput').value = '';
-  try { await callBackend('updateAnnouncement', { text: '' }); toast('📢 ปิดแถบประกาศแล้ว', 'ok'); loadDash(); } catch(e){}
-}
-async function approveRecord(id, decision) {
-  try {
-    const res = await callBackend('processApprovalDecision', { id: id, decision: decision });
-    if(res.success) { toast(`ดำเนินการ ${decision} รายการเรียบร้อย`, 'ok'); refreshAdminPanels(); }
-  } catch(e){}
-}
-
-/* RECORD MODAL SYSTEM EDIT/DELETE */
-function openEditModal(id) {
-  const r = globalHistoryData.find(x => x.id == id); if(!r) return;
-  editingRecordId = id; document.getElementById('eRecId').textContent = id;
-  document.getElementById('eDate').value = r.dateISO || new Date().toISOString().split('T')[0];
-  document.getElementById('eType').value = r.type;
-  document.getElementById('eEmpCode').value = r.empCode||'';
-  document.getElementById('eEmpName').value = r.empName||'';
-  document.getElementById('ePCode').value = r.pCode||'';
-  document.getElementById('ePName').value = r.pName||'';
-  document.getElementById('eQty').value = r.qty||'1';
-  document.getElementById('eUnit').value = r.unit||'';
-  document.getElementById('eNote').value = r.note||'';
+/* ═══════════════════════════════════
+   EDIT / DELETE / APPROVE
+═══════════════════════════════════ */
+function openEditModal(r){
+  if(!isAdmin){toast('⚠️ ต้องเข้าสู่โหมด Admin','err');return;}
+  document.getElementById('editDocId').value=r.docId;
+  const parts=(r.date||'').split('/');
+  document.getElementById('editDate').value=parts.length===3?`${parts[2]}-${parts[1].padStart(2,'0')}-${parts[0].padStart(2,'0')}`:'';
+  document.getElementById('editType').value=r.type||'เบิกออก';
+  document.getElementById('editPCode').value=r.productCode||'';
+  document.getElementById('editPName').value=r.productName||'';
+  document.getElementById('editQty').value=r.qty||1;
+  document.getElementById('editUnit').value=r.unit||'';
+  document.getElementById('editEmpCode').value=r.empCode||'';
+  document.getElementById('editEmpName').value=r.empName||'';
+  document.getElementById('editNote').value=r.note||'';
   document.getElementById('editMo').classList.add('show');
 }
-function closeEditModal() { document.getElementById('editMo').classList.remove('show'); editingRecordId = null; }
-async function submitEditRecord() {
-  if(!editingRecordId) return;
-  const payload = {
-    id: editingRecordId, date: document.getElementById('eDate').value, type: document.getElementById('eType').value,
-    empCode: document.getElementById('eEmpCode').value.trim(), empName: document.getElementById('eEmpName').value.trim(),
-    pCode: document.getElementById('ePCode').value.trim(), pName: document.getElementById('ePName').value.trim(),
-    qty: parseInt(document.getElementById('eQty').value||1), unit: document.getElementById('eUnit').value.trim(), note: document.getElementById('eNote').value.trim()
-  };
-  try {
-    const res = await callBackend('editHistoryRecord', { data: payload });
-    if(res.success) { toast('🎉 อัปเดตแก้ไขรายการเรียบร้อย', 'ok'); closeEditModal(); loadHist(); }
-  } catch(e){}
+async function saveEdit(){
+  const dv=document.getElementById('editDate').value;
+  const dp=dv.split('-');
+  const dateStr=dp.length===3?`${dp[2]}/${dp[1]}/${dp[0]}`:dv;
+  const btn=document.getElementById('editSaveBtn');
+  btn.innerHTML='<span class="sp"></span>';btn.disabled=true;
+  try{
+    await apiPost('update',{
+      docId:document.getElementById('editDocId').value,
+      date:dateStr,type:document.getElementById('editType').value,
+      productCode:document.getElementById('editPCode').value,productName:document.getElementById('editPName').value,
+      qty:parseInt(document.getElementById('editQty').value)||0,unit:document.getElementById('editUnit').value,
+      empCode:document.getElementById('editEmpCode').value,empName:document.getElementById('editEmpName').value,
+      note:document.getElementById('editNote').value,
+    });
+    closeModal('editMo');toast('✅ แก้ไขสำเร็จ','ok');loadHist();
+  }catch(e){toast('❌ '+e.message,'err');}
+  btn.innerHTML='💾 บันทึก';btn.disabled=false;
 }
-async function deleteRecord(id) {
-  if(!confirm(`⚠️ คุณแน่ใจใช่หรือไม่ว่าต้องการลบรายการแถว ID: ${id} ออกจากระบบถาวร? (การลบจะคืนค่าระบบสต็อกเดิม)`)) return;
-  try {
-    const res = await callBackend('deleteHistoryRecord', { id: id });
-    if(res.success) { toast('🗑️ ลบรายการแถวออกจากสารบบแล้ว', 'ok'); loadHist(); }
-  } catch(e){}
+function openDelModal(docId,name,date){
+  if(!isAdmin){toast('⚠️ ต้องเข้าสู่โหมด Admin','err');return;}
+  deleteDocId=docId;
+  document.getElementById('delInfo').textContent=`${date} | ${name} | ID: ${docId}`;
+  document.getElementById('delMo').classList.add('show');
+}
+async function confirmDelete(){
+  if(!deleteDocId)return;
+  const btn=document.getElementById('delConfirmBtn');
+  btn.innerHTML='<span class="sp"></span>';btn.disabled=true;
+  try{await apiPost('delete',{docId:deleteDocId});closeModal('delMo');toast('🗑️ ลบรายการแล้ว','warn');loadHist();}
+  catch(e){toast('❌ '+e.message,'err');}
+  btn.innerHTML='🗑️ ลบเลย';btn.disabled=false;deleteDocId=null;
+}
+async function approveRow(docId,btn){
+  btn.disabled=true;btn.textContent='...';
+  try{await apiPost('approve',{docId});toast('✅ อนุมัติแล้ว','ok');loadHist();}
+  catch(e){toast('❌ '+e.message,'err');btn.disabled=false;btn.textContent='✅';}
+}
+async function loadPending(){
+  const tb=document.getElementById('pendingBody');
+  tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:20px"><span class="sp"></span></td></tr>';
+  try{
+    const rows=await apiGet('pending');
+    document.getElementById('pendingCount').textContent=rows.length?`(${rows.length} รายการรอ)`:'';
+    if(!rows.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--ink3)">✅ ไม่มีรายการรอ</td></tr>';return;}
+    tb.innerHTML=rows.map(r=>`<tr>
+      <td style="font-family:monospace;font-size:.76rem">${r.docId||'—'}</td>
+      <td>${r.date||'—'}</td><td>${badge(r.type)}</td><td>${r.productName||'—'}</td>
+      <td style="font-family:monospace">${r.qty||0} ${r.unit||''}</td><td>${r.empName||'—'}</td>
+      <td><button class="act-btn act-approve" onclick="approveDirect('${r.docId}',this)">✅ อนุมัติ</button></td>
+    </tr>`).join('');
+  }catch(e){tb.innerHTML=`<tr><td colspan="7" style="text-align:center;color:red">❌ ${e.message}</td></tr>`;}
+}
+async function approveDirect(docId,btn){
+  btn.disabled=true;btn.textContent='...';
+  try{await apiPost('approve',{docId});toast('✅ อนุมัติแล้ว','ok');loadPending();}
+  catch(e){toast('❌ '+e.message,'err');btn.disabled=false;btn.textContent='✅ อนุมัติ';}
 }
 
-/* INTERFACE UTILS */
-function toast(msg, type='ok') {
-  const c = document.getElementById('toastC'); const t = document.createElement('div');
-  t.className = 'toast ' + type; t.textContent = msg; c.appendChild(t);
-  setTimeout(() => t.remove(), 3500);
+/* ═══════════════════════════════════
+   CONTACT
+═══════════════════════════════════ */
+function saveContact(){
+  const data={name:document.getElementById('contactName').value.trim(),line:document.getElementById('contactLine').value.trim(),tel:document.getElementById('contactTel').value.trim(),dept:document.getElementById('contactDept').value.trim()};
+  localStorage.setItem('storeContact',JSON.stringify(data));toast('💾 บันทึกข้อมูลติดต่อแล้ว','ok');loadContactPreview();
 }
+function loadContactPreview(){
+  const raw=localStorage.getItem('storeContact');if(!raw)return;
+  const d=JSON.parse(raw);
+  if(document.getElementById('contactName'))document.getElementById('contactName').value=d.name||'';
+  if(document.getElementById('contactLine'))document.getElementById('contactLine').value=d.line||'';
+  if(document.getElementById('contactTel'))document.getElementById('contactTel').value=d.tel||'';
+  if(document.getElementById('contactDept'))document.getElementById('contactDept').value=d.dept||'';
+  if(d.name||d.line){
+    document.getElementById('contactPreview').style.display='block';
+    document.getElementById('prvAvatar').textContent=(d.name||'S').charAt(0);
+    document.getElementById('prvName').textContent=d.name||'—';document.getElementById('prvDept').textContent=d.dept||'—';
+    const lineId=d.line||'';const lineUrl=lineId.startsWith('@')?`https://line.me/ti/p/${lineId}`:`https://line.me/ti/p/~${lineId}`;
+    document.getElementById('prvLineLink').href=lineUrl;document.getElementById('prvLineLink').textContent=`💚 LINE: ${lineId}`;
+  }
+}
+
+/* ═══════════════════════════════════
+   LOOKUP (fetch)
+═══════════════════════════════════ */
+async function doLookup(){
+  const code=document.getElementById('lookupCode').value.trim();
+  if(!code){toast('กรุณากรอกรหัสพนักงาน','err');return;}
+  document.getElementById('lookupEmpty').style.display='none';
+  document.getElementById('lookupResult').style.display='none';
+  try{
+    const [emp,rows]=await Promise.all([apiGet('employee',{code}),apiGet('history')]);
+    if(!emp){toast('ไม่พบรหัสพนักงาน: '+code,'err');document.getElementById('lookupEmpty').style.display='block';return;}
+    const nm=emp.name||'?';
+    document.getElementById('luAvatar').textContent=nm.charAt(0);
+    document.getElementById('luName').textContent=nm;
+    document.getElementById('luDept').textContent=[emp.department,emp.position].filter(Boolean).join(' · ');
+    document.getElementById('luCode').textContent=emp.code||code;
+    const norm=c=>String(c||'').replace(/^0+/,'');
+    const empRows=(rows||[]).filter(r=>norm(r.empCode)===norm(code)||String(r.empCode)===String(code));
+    const out=empRows.filter(r=>r.type==='เบิกออก'),inp=empRows.filter(r=>r.type==='รับเข้า'),loan=empRows.filter(r=>r.type==='ยืมอุปกรณ์');
+    document.getElementById('luQtyOut').textContent=out.reduce((s,r)=>s+Number(r.qty||0),0);document.getElementById('luCntOut').textContent=out.length+' รายการ';
+    document.getElementById('luQtyIn').textContent=inp.reduce((s,r)=>s+Number(r.qty||0),0);document.getElementById('luCntIn').textContent=inp.length+' รายการ';
+    document.getElementById('luQtyLoan').textContent=loan.reduce((s,r)=>s+Number(r.qty||0),0);document.getElementById('luCntLoan').textContent=loan.length+' รายการ';
+    const last20=empRows.slice(0,20);
+    document.getElementById('luBody').innerHTML=!last20.length?'<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--ink3)">ยังไม่มีประวัติ</td></tr>':last20.map(r=>`<tr><td>${r.date||'—'}</td><td>${badge(r.type)}</td><td>${r.productName||'—'}</td><td style="font-family:monospace;font-weight:700">${r.qty||0}</td><td>${r.unit||'—'}</td><td>${r.location||'—'}</td><td style="font-size:.8rem;color:var(--ink3)">${r.note||'—'}</td></tr>`).join('');
+    document.getElementById('lookupResult').style.display='block';
+  }catch(e){toast(e.message,'err');document.getElementById('lookupEmpty').style.display='block';}
+}
+
+/* ═══════════════════════════════════
+   DASHBOARD (fetch)
+═══════════════════════════════════ */
+async function loadDash(){
+  try{
+    const [s,rows]=await Promise.all([apiGet('dashboard'),apiGet('history')]);
+    document.getElementById('d-total').textContent=s.totalProducts;
+    document.getElementById('d-low').textContent=s.lowStock;
+    document.getElementById('d-out').textContent=s.outOfStock;
+    document.getElementById('d-today').textContent=s.todayReq;
+    const tb=document.getElementById('d-tbody');
+    if(!rows||!rows.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--ink3)">ยังไม่มีรายการ</td></tr>';return;}
+    tb.innerHTML=rows.slice(0,8).map(r=>`<tr>
+      <td>${r.date||'—'}</td><td>${badge(r.type)}</td><td>${r.productName||'—'}</td>
+      <td style="font-family:monospace;font-weight:700">${r.qty||0} ${r.unit||''}</td>
+      <td style="font-family:monospace;font-weight:700;color:var(--g)">${r.stock||'—'}</td>
+      <td>${r.empName||'—'}</td>
+      <td>${r.approved==='อนุมัติแล้ว'?'<span class="bdg bapprove">✅</span>':'<span class="bdg bpending">⏳</span>'}</td>
+    </tr>`).join('');
+  }catch(e){console.error(e);}
+}
+
+/* ═══════════════════════════════════
+   SAVE (fetch)
+═══════════════════════════════════ */
+async function save(){
+  const type=document.getElementById('fType').value,eCode=document.getElementById('fEmpCode').value.trim(),
+    eNm=document.getElementById('fEmpName').value.trim(),dept=document.getElementById('fDept').value.trim(),
+    pCode=document.getElementById('fPCode').value.trim(),pNm=document.getElementById('fPName').value.trim(),
+    pSz=document.getElementById('fPSize').value.trim(),qty=parseInt(document.getElementById('fQty').value)||0,
+    unit=document.getElementById('fUnit').value.trim(),stock=document.getElementById('fStock').value,
+    note=document.getElementById('fNote').value.trim(),stat=document.getElementById('fStatus').value,
+    loc=document.getElementById('fLocation').value,date=document.getElementById('fDate').value;
+  if(!pCode){toast('กรุณากรอกรหัสสินค้า','err');return;}
+  if(!pNm){toast('กรุณากรอกชื่อสินค้า','err');return;}
+  if(qty<1){toast('จำนวนต้องมากกว่า 0','err');return;}
+  if(type==='เบิกออก'&&currentStock>0&&qty>currentStock){if(!confirm(`⚠️ คงเหลือมีแค่ ${currentStock} แต่เบิก ${qty}\nดำเนินการต่อหรือไม่?`))return;}
+  const btn=document.getElementById('saveBtn');
+  btn.innerHTML='<span class="sp"></span> กำลังบันทึก...';btn.disabled=true;
+  try{
+    const r=await apiPost('save',{type,empCode:eCode,empName:eNm,department:dept,productCode:pCode,productName:pNm,productSize:pSz,qty,unit,stockBefore:stock||0,note,status:stat,location:loc,date});
+    toast(`✅ บันทึกสำเร็จ! ID: ${r.docId}  คงเหลือ: ${r.newStock}`,'ok');
+    document.getElementById('fStock').value=r.newStock;currentStock=r.newStock;
+    document.getElementById('ppSt').textContent=r.newStock;resetF(true);
+  }catch(e){toast('❌ '+e.message,'err');}
+  btn.innerHTML='💾 บันทึก';btn.disabled=false;
+}
+function resetF(soft=false){
+  if(!soft){['fEmpCode','fEmpName','fDept','fPCode','fPName','fPSize','fStock','fUnit'].forEach(id=>document.getElementById(id).value='');hideProd();hideEmp();}
+  document.getElementById('fQty').value='1';document.getElementById('fNote').value='';
+  document.getElementById('fDate').value=new Date().toISOString().split('T')[0];setType('เบิกออก');
+}
+
+/* ═══════════════════════════════════
+   NFC
+═══════════════════════════════════ */
+let nfcReader=null,nfcAbort=null,nfcRunning=false;
+async function startNFC(){
+  if(nfcRunning){stopNFC();return;}
+  if(!('NDEFReader' in window)){toast('❌ เบราว์เซอร์นี้ไม่รองรับ NFC','err');return;}
+  try{
+    nfcReader=new NDEFReader();nfcAbort=new AbortController();
+    await nfcReader.scan({signal:nfcAbort.signal});
+    nfcRunning=true;setNFCStatus('reading','📡 พร้อมแล้ว — แตะการ์ด NFC...');
+    document.getElementById('nfcBtn').textContent='⏹ หยุด NFC';
+    document.getElementById('nfcBtn').style.background='var(--red)';
+    nfcReader.addEventListener('reading',({message,serialNumber})=>{
+      let code='';
+      for(const rec of message.records){
+        if(rec.recordType==='text'){code=new TextDecoder(rec.encoding||'utf-8').decode(rec.data).trim();break;}
+        if(rec.recordType==='url'){code=new TextDecoder().decode(rec.data).split('/').pop().trim();break;}
+      }
+      if(!code&&serialNumber) code=serialNumber.replace(/:/g,'').toUpperCase();
+      if(code){setNFCStatus('ok','✅ อ่านได้: '+code);try{const ac=new AudioContext(),o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=1200;g.gain.value=0.3;o.start();o.stop(ac.currentTime+0.1);}catch(e){}
+        setTimeout(()=>{document.getElementById('lookupCode').value=code;stopNFC();doLookup();},800);}
+    });
+  }catch(err){
+    let msg='❌ เปิด NFC ไม่สำเร็จ';
+    if(err.name==='NotAllowedError') msg='❌ กรุณาอนุญาต NFC';
+    if(err.name==='NotSupportedError') msg='❌ อุปกรณ์นี้ไม่มี NFC';
+    if(err.name==='NotReadableError') msg='❌ กรุณาเปิด NFC ในการตั้งค่า';
+    setNFCStatus('err',msg);nfcRunning=false;
+  }
+}
+function stopNFC(){
+  if(nfcAbort){nfcAbort.abort();nfcAbort=null;}nfcRunning=false;nfcReader=null;
+  const btn=document.getElementById('nfcBtn');if(btn){btn.textContent='📡 NFC';btn.style.background='var(--purple)';}
+  document.getElementById('nfcStatus').style.display='none';
+}
+function setNFCStatus(state,msg){
+  const el=document.getElementById('nfcStatus');el.style.display='block';
+  const s={reading:{bg:'var(--pl)',c:'var(--purple)',b:'#ddd6fe'},ok:{bg:'var(--gl)',c:'var(--g)',b:'#bbf7d0'},err:{bg:'var(--rl)',c:'var(--red)',b:'#fca5a5'}}[state];
+  el.style.background=s.bg;el.style.color=s.c;el.style.borderColor=s.b;el.textContent=msg;
+}
+
+/* ═══════════════════════════════════
+   SCANNER
+═══════════════════════════════════ */
+function openScan(target){
+  scanTarget=target;const isEmp=target==='emp'||target==='lookup';
+  document.getElementById('scanTitle').textContent=isEmp?'📷 สแกน QR พนักงาน':'📷 สแกนบาร์โค้ดสินค้า';
+  document.getElementById('scanMo').classList.add('show');switchTab('cam');
+}
+function closeScan(){stopCamera();document.getElementById('scanMo').classList.remove('show');document.getElementById('scanStatus').className='scan-status wait';document.getElementById('scanStatus').textContent='🔍 กดปุ่มด้านล่างเพื่อเปิดกล้อง';document.getElementById('camWrap').style.display='none';}
+function switchTab(tab){document.getElementById('tab-cam').classList.toggle('on',tab==='cam');document.getElementById('tab-man').classList.toggle('on',tab==='man');document.getElementById('tab-cam-content').style.display=tab==='cam'?'block':'none';document.getElementById('tab-man-content').style.display=tab==='man'?'block':'none';if(tab==='man'){stopCamera();setTimeout(()=>document.getElementById('manCode').focus(),200);}}
+async function startCamera(){
+  if(scanActive)return;setScanStatus('wait','🔍 กำลังขอสิทธิ์กล้อง...');
+  try{videoStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}}});
+    const video=document.getElementById('camVideo');video.srcObject=videoStream;await video.play();
+    document.getElementById('camWrap').style.display='block';document.getElementById('startCamBtn').textContent='✅ กล้องทำงาน';document.getElementById('startCamBtn').disabled=true;scanActive=true;loadCameraList();
+    if('BarcodeDetector' in window){barcodeDetector=new BarcodeDetector({formats:['qr_code','ean_13','ean_8','code_128','code_39','upc_a','upc_e','itf']});startBarcodeLoop();setScanStatus('wait','🔍 พร้อมสแกน');}
+    else{setScanStatus('err','⚠️ ไม่รองรับสแกนอัตโนมัติ');setTimeout(()=>switchTab('man'),2000);}
+  }catch(err){let msg='❌ เปิดกล้องไม่สำเร็จ';if(err.name==='NotAllowedError')msg='❌ กรุณาอนุญาตกล้อง';if(err.name==='NotFoundError')msg='❌ ไม่พบกล้อง';setScanStatus('err',msg);setTimeout(()=>switchTab('man'),2000);}
+}
+function startBarcodeLoop(){const video=document.getElementById('camVideo'),canvas=document.getElementById('camCanvas'),ctx=canvas.getContext('2d');scanInterval=setInterval(async()=>{if(!scanActive||video.readyState<2)return;try{canvas.width=video.videoWidth;canvas.height=video.videoHeight;ctx.drawImage(video,0,0);const codes=await barcodeDetector.detect(canvas);if(codes.length>0)onScanSuccess(codes[0].rawValue);}catch(e){}},300);}
+function stopCamera(){if(scanInterval){clearInterval(scanInterval);scanInterval=null;}if(videoStream){videoStream.getTracks().forEach(t=>t.stop());videoStream=null;}const v=document.getElementById('camVideo');if(v)v.srcObject=null;const b=document.getElementById('startCamBtn');if(b){b.textContent='📷 เปิดกล้อง';b.disabled=false;}scanActive=false;}
+async function loadCameraList(){try{const d=await navigator.mediaDevices.enumerateDevices();const c=d.filter(x=>x.kind==='videoinput');document.getElementById('camSelect').innerHTML=c.map((x,i)=>`<option value="${x.deviceId}">${x.label||'กล้อง '+(i+1)}</option>`).join('');}catch(e){}}
+async function switchCamera(){const id=document.getElementById('camSelect').value;if(!id)return;stopCamera();try{videoStream=await navigator.mediaDevices.getUserMedia({video:{deviceId:{exact:id}}});const v=document.getElementById('camVideo');v.srcObject=videoStream;await v.play();document.getElementById('camWrap').style.display='block';document.getElementById('startCamBtn').disabled=true;scanActive=true;if(barcodeDetector)startBarcodeLoop();setScanStatus('wait','🔍 พร้อมสแกน');}catch(e){setScanStatus('err','❌ สลับกล้องไม่สำเร็จ');}}
+function onScanSuccess(code){clearInterval(scanInterval);scanInterval=null;setScanStatus('ok','✅ สแกนได้: '+code);try{const ac=new AudioContext(),o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=880;g.gain.value=0.3;o.start();o.stop(ac.currentTime+0.15);}catch(e){}setTimeout(()=>{stopCamera();closeScan();applyScannedCode(code);},700);}
+function applyScannedCode(code){if(scanTarget==='product'){document.getElementById('fPCode').value=code;lookupProd(code);toast('📦 '+code,'ok');}else if(scanTarget==='lookup'){document.getElementById('lookupCode').value=code;doLookup();toast('👤 '+code,'ok');}else{document.getElementById('fEmpCode').value=code;lookupEmp(code);toast('👤 '+code,'ok');}}
+function confirmManual(){const v=document.getElementById('manCode').value.trim();if(!v){toast('กรุณากรอกรหัส','err');return;}closeScan();applyScannedCode(v);}
+function setScanStatus(cls,msg){const el=document.getElementById('scanStatus');el.className='scan-status '+cls;el.textContent=msg;}
+
+/* MODAL helpers */
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+document.getElementById('scanMo').addEventListener('click',e=>{if(e.target===e.currentTarget)closeScan();});
+document.getElementById('pinMo').addEventListener('click',e=>{if(e.target===e.currentTarget)closePinModal();});
+document.getElementById('editMo').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal('editMo');});
+document.getElementById('delMo').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal('delMo');});
+
+function badge(t){if(t==='เบิกออก')return`<span class="bdg bo">⬆️ ${t}</span>`;if(t==='รับเข้า')return`<span class="bdg bi">⬇️ ${t}</span>`;return`<span class="bdg bl2">🔄 ${t||'—'}</span>`;}
+function toast(msg,cls=''){const c=document.getElementById('toastC'),t=document.createElement('div');t.className='toast'+(cls?' '+cls:'');t.textContent=msg;c.appendChild(t);setTimeout(()=>t.remove(),3800);}
 </script>
 </body>
 </html>
+ENDOFHTML
