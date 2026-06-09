@@ -574,7 +574,7 @@ function getApiUrl() {
 function saveApiUrl() {
   const inputEl = document.getElementById('adminApiUrl') || document.getElementById('apiUrlInput');
   const url = inputEl?.value.trim();
-  if (!url) {
+  if (!url || !url.includes('google.com')) {
     toast('❌ กรุณากรอก URL', 'err');
     return;
   }
