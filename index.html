@@ -572,14 +572,20 @@ function getApiUrl() {
   return localStorage.getItem(API_KEY) || '';
 }
 function saveApiUrl() {
-  const url = (document.getElementById('adminApiUrl') || document.getElementById('apiUrlInput'))?.value.trim();
-  if (!url || !url.includes('script.google.com')) {
-    toast('❌ URL ไม่ถูกต้อง ต้องเป็น script.google.com', 'err'); return;
+  const inputEl = document.getElementById('adminApiUrl') || document.getElementById('apiUrlInput');
+  const url = inputEl?.value.trim();
+  if (!url) {
+    toast('❌ กรุณากรอก URL', 'err');
+    return;
   }
   localStorage.setItem(API_KEY, url);
-  if (document.getElementById('adminApiUrl')) document.getElementById('adminApiUrl').value = url;
+  if (document.getElementById('adminApiUrl')) {
+    document.getElementById('adminApiUrl').value = url;
+  }
   document.getElementById('apiSetupBanner').style.display = 'none';
-  document.getElementById('apiUrlStatus').textContent = '✅ บันทึกแล้ว: ' + url.slice(0,60) + '...';
+  if (document.getElementById('apiUrlStatus')) {
+    document.getElementById('apiUrlStatus').textContent = '✅ บันทึกแล้ว';
+  }
   toast('✅ บันทึก URL แล้ว', 'ok');
   loadDash();
 }
