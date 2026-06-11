@@ -809,6 +809,317 @@ tbody tr:hover{background:var(--surf)}
 </div>
 
 <div class="tc" id="toastC"></div>
+
+<!-- ═══ GOOGLE APPS SCRIPT EMULATOR Logic (For Offline & GitHub Pages Mode) ═══ -->
+<script>
+const defaultProducts = [
+  {code:"PROD001", name:"ปากกาเคมีสีน้ำเงิน ตราม้า", category:"เครื่องเขียน", size:"หัวตัด", stock:25, unit:"ด้าม"},
+  {code:"PROD002", name:"สมุดจดบันทึกมีเส้น A5", category:"เอกสาร", size:"80 แผ่น", stock:8, unit:"เล่ม"},
+  {code:"PROD003", name:"หมวกเซฟตี้วิศวกรรมสีขาว", category:"ความปลอดภัย", size:"ฟรีไซส์ Class A", stock:12, unit:"ใบ"},
+  {code:"PROD004", name:"ตลับเมตรแสตนเลสเกรดเอ", category:"ทั่วไป", size:"5 เมตร", stock:3, unit:"อัน"},
+  {code:"PROD005", name:"กระดาษถ่ายเอกสาร A4 80g Double A", category:"เอกสาร", size:"500 แผ่น/รีม", stock:0, unit:"รีม"}
+];
+
+const defaultEmployees = [
+  {code:"EMP001", name:"สมชาย ใจดี", department:"วิศวกรและโครงการ", position:"วิศวกรไฟฟ้า", affiliation:"เคหยี่ ก่อสร้าง"},
+  {code:"EMP002", name:"สมหญิง รักเรียน", department:"ธุรการจัดซื้อ", position:"จัดซื้อพัสดุ", affiliation:"เคหยี่ ก่อสร้าง"},
+  {code:"EMP003", name:"อาหลี่ เคหยี่", department:"ผู้ควบคุมงานไซต์", position:"โฟร์แมน", affiliation:"เคหยี่ ก่อสร้าง"}
+];
+
+const defaultHistory = [
+  {rowNum: 1, docId:"REQ001", date:"10/6/2569", type:"รับเข้า", productCode:"PROD001", productName:"ปากกาเคมีสีน้ำเงิน ตราม้า", productSize:"หัวตัด", qty:10, unit:"ด้าม", stock:25, empCode:"EMP002", empName:"สมหญิง รักเรียน", department:"ธุรการจัดซื้อ", note:"เพิ่มเข้าล็อตใหม่", approval:"อนุมัติ"},
+  {rowNum: 2, docId:"REQ002", date:"10/6/2569", type:"เบิกออก", productCode:"PROD003", productName:"หมวกเซฟตี้วิศวกรรมสีขาว", productSize:"ฟรีไซส์ Class A", qty:2, unit:"ใบ", stock:10, empCode:"EMP001", empName:"สมชาย ใจดี", department:"วิศวกรและโครงการ", note:"ใช้หน้างานไซต์ก่อสร้าง", approval:"อนุมัติ"}
+];
+
+const defaultConfigs = {
+  showStock: "true",
+  stockVisibleAll: "true",
+  showHistory: "true",
+  requireApproval: "false",
+  announcement: "ยินดีต้อนรับสู่ระบบคลังพัสดุเคยี่ก่อสร้าง ค้นหา สแกน QR และทำรายการได้ทันที!",
+  companyName: "บริษัทเคยี่ ก่อสร้าง",
+  lineUrl: "https://line.me/ti/p/~yourlineid",
+  lineDisplay: "ติดต่อสโตร์",
+  adminPin: "1234",
+  gasUrl: ""
+};
+
+// Functions to load and save to localStorage
+function getProducts() {
+  if(!localStorage.getItem("KY_Products")) localStorage.setItem("KY_Products", JSON.stringify(defaultProducts));
+  return JSON.parse(localStorage.getItem("KY_Products"));
+}
+function getEmployees() {
+  if(!localStorage.getItem("KY_Employees")) localStorage.setItem("KY_Employees", JSON.stringify(defaultEmployees));
+  return JSON.parse(localStorage.getItem("KY_Employees"));
+}
+function getHistory() {
+  if(!localStorage.getItem("KY_History")) localStorage.setItem("KY_History", JSON.stringify(defaultHistory));
+  return JSON.parse(localStorage.getItem("KY_History"));
+}
+function getConfigs() {
+  if(!localStorage.getItem("KY_Configs")) localStorage.setItem("KY_Configs", JSON.stringify(defaultConfigs));
+  return JSON.parse(localStorage.getItem("KY_Configs"));
+}
+function getTodayThaiDate() {
+  const n = new Date();
+  return `${n.getDate()}/${n.getMonth()+1}/${n.getFullYear()+543}`;
+}
+
+// Local simulation backend
+const mockBackend = {
+  getPublicConfig() { return getConfigs(); },
+  getProductByCode(code) {
+    const p = getProducts().find(prod => prod.code.toUpperCase() === code.toUpperCase());
+    return p ? p : { error: true };
+  },
+  getEmployeeByCode(code) {
+    const e = getEmployees().find(emp => emp.code.toUpperCase() === code.toUpperCase());
+    return e ? e : { error: true };
+  },
+  getEmployeeHistory(code) {
+    return getHistory().filter(h => h.empCode.toUpperCase() === code.toUpperCase());
+  },
+  getDashboardSummary() {
+    const prods = getProducts();
+    const hist = getHistory();
+    const totalProducts = prods.length;
+    const lowStock = prods.filter(p => Number(p.stock) <= 5 && Number(p.stock) > 0).length;
+    const outOfStock = prods.filter(p => Number(p.stock) <= 0).length;
+    const todayStr = getTodayThaiDate();
+    const todayReq = hist.filter(h => h.date === todayStr).length;
+    return { totalProducts, lowStock, outOfStock, todayReq };
+  },
+  getRecentHistory() {
+    return [...getHistory()].reverse();
+  },
+  getAllProducts() {
+    return getProducts();
+  },
+  verifyAdminPin(pin) {
+    return { ok: pin === getConfigs().adminPin };
+  },
+  getAdminConfig() {
+    return getConfigs();
+  },
+  saveAdminConfig(cfg) {
+    const current = getConfigs();
+    const updated = { ...current, ...cfg };
+    localStorage.setItem("KY_Configs", JSON.stringify(updated));
+    return { success: true };
+  },
+  updateHistoryRow(rowNum, fields) {
+    const hist = getHistory();
+    const idx = hist.findIndex(h => h.rowNum === rowNum);
+    if(idx !== -1) {
+      hist[idx] = { ...hist[idx], ...fields };
+      localStorage.setItem("KY_History", JSON.stringify(hist));
+      return { success: true };
+    }
+    return { success: false, error: "Row not found" };
+  },
+  deleteHistoryRow(rowNum) {
+    let hist = getHistory();
+    hist = hist.filter(h => h.rowNum !== rowNum);
+    localStorage.setItem("KY_History", JSON.stringify(hist));
+    return { success: true };
+  },
+  approveHistoryRow(rowNum) {
+    const hist = getHistory();
+    const idx = hist.findIndex(h => h.rowNum === rowNum);
+    if(idx !== -1) {
+      const row = hist[idx];
+      if(row.approval === "รอ" || !row.approval) {
+        if(row.type === 'เบิกออก' || row.type === 'ยืมอุปกรณ์') {
+          const prods = getProducts();
+          const pIdx = prods.findIndex(p => p.code.toUpperCase() === row.productCode.toUpperCase());
+          if(pIdx !== -1) {
+            prods[pIdx].stock = Math.max(0, Number(prods[pIdx].stock) - Number(row.qty));
+            row.stock = prods[pIdx].stock;
+            localStorage.setItem("KY_Products", JSON.stringify(prods));
+          }
+        }
+        row.approval = "อนุมัติ";
+        localStorage.setItem("KY_History", JSON.stringify(hist));
+        return { success: true };
+      }
+    }
+    return { success: false, error: "Row error" };
+  },
+  rejectHistoryRow(rowNum) {
+    const hist = getHistory();
+    const idx = hist.findIndex(h => h.rowNum === rowNum);
+    if(idx !== -1) {
+      hist[idx].approval = "ไม่อนุมัติ";
+      localStorage.setItem("KY_History", JSON.stringify(hist));
+      return { success: true };
+    }
+    return { success: false, error: "Row error" };
+  },
+  saveRequisition(req) {
+    const prods = getProducts();
+    const hist = getHistory();
+    const cfg = getConfigs();
+
+    let prod = prods.find(p => p.code.toUpperCase() === req.productCode.toUpperCase());
+    if(!prod) {
+      prod = {
+        id: "P"+Date.now(),
+        code: req.productCode,
+        name: req.productName,
+        category: "ทั่วไป",
+        size: req.productSize || "",
+        stock: 0,
+        unit: req.unit || "ชิ้น"
+      };
+      prods.push(prod);
+    }
+
+    let apv = "อนุมัติ";
+    if(cfg.requireApproval === "true" && req.type === "เบิกออก") {
+      apv = "รอ";
+    }
+
+    if(apv === "อนุมัติ") {
+      if(req.type === 'เบิกออก' || req.type === 'ยืมอุปกรณ์') {
+        prod.stock = Math.max(0, Number(prod.stock) - Number(req.qty));
+      } else if (req.type === 'รับเข้า') {
+        prod.stock = Number(prod.stock) + Number(req.qty);
+      }
+    }
+
+    localStorage.setItem("KY_Products", JSON.stringify(prods));
+
+    const rowNum = hist.length > 0 ? Math.max(...hist.map(h => h.rowNum)) + 1 : 1;
+    const docId = "REQ" + String(rowNum).padStart(3, '0');
+
+    let displayDate = req.date;
+    if(displayDate) {
+      const parts = displayDate.split("-");
+      if(parts.length === 3) {
+        displayDate = `${parseInt(parts[2])}/${parseInt(parts[1])}/${parseInt(parts[0])+543}`;
+      }
+    } else {
+      displayDate = getTodayThaiDate();
+    }
+
+    const log = {
+      rowNum,
+      docId,
+      date: displayDate,
+      type: req.type,
+      productCode: req.productCode,
+      productName: req.productName,
+      productSize: req.productSize,
+      qty: req.qty,
+      unit: req.unit,
+      stock: prod.stock,
+      empCode: req.empCode || "N/A",
+      empName: req.empName || "บุคคลทั่วไป",
+      department: req.department || "ไม่ระบุแผนก",
+      note: req.note,
+      approval: apv
+    };
+
+    hist.push(log);
+    localStorage.setItem("KY_History", JSON.stringify(hist));
+
+    return { success: true, docId, newStock: prod.stock };
+  }
+};
+
+// Interceptor logic for fetch / gas simulation
+class MockRunner {
+  constructor() {
+    this.onSuccess = () => {};
+    this.onFailure = () => {};
+  }
+  withSuccessHandler(cb) { this.onSuccess = cb; return this; }
+  withFailureHandler(cb) { this.onFailure = cb; return this; }
+}
+
+const mockHandler = {
+  get(target, prop) {
+    if(prop === 'withSuccessHandler') {
+      return function(successCallback) {
+        return new Proxy(new MockRunner().withSuccessHandler(successCallback), mockRunnerHandler);
+      }
+    }
+    if(prop === 'withFailureHandler') {
+      return function(failureCallback) {
+        return new Proxy(new MockRunner().withFailureHandler(failureCallback), mockRunnerHandler);
+      }
+    }
+    return function(...args) {
+      executeMock(prop, args, () => {}, () => {});
+    }
+  }
+};
+
+const mockRunnerHandler = {
+  get(target, prop) {
+    if(prop === 'withSuccessHandler') {
+      return function(cb) { target.withSuccessHandler(cb); return new Proxy(target, mockRunnerHandler); }
+    }
+    if(prop === 'withFailureHandler') {
+      return function(cb) { target.withFailureHandler(cb); return new Proxy(target, mockRunnerHandler); }
+    }
+    return function(...args) {
+      executeMock(prop, args, target.onSuccess, target.onFailure);
+    }
+  }
+};
+
+async function executeMock(funcName, args, onSuccess, onFailure) {
+  const configs = getConfigs();
+  const url = configs.gasUrl;
+  
+  if (url) {
+    // If Web App URL is present, route requests through Sheets
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({ function: funcName, arguments: args })
+      });
+      const data = await response.json();
+      if(data.success) { onSuccess(data.result); return; }
+    } catch(err) {
+      console.warn("GAS Connection failed. Falling back to local offline storage.", err);
+    }
+  }
+
+  // Fallback to client-side localStorage simulation
+  setTimeout(() => {
+    try {
+      const res = mockBackend[funcName](...args);
+      onSuccess(res);
+    } catch(e) {
+      onFailure(e);
+    }
+  }, 100);
+}
+
+// Injected global object
+const google = {
+  script: {
+    run: new Proxy({}, mockHandler)
+  }
+};
+
+// Reset option inside admin panel
+function resetMockDatabase() {
+  if(confirm("คุณต้องการล้างฐานข้อมูลประวัติและพัสดุในเครื่องนี้กลับเป็นค่าเริ่มต้นหรือไม่?")) {
+    localStorage.clear();
+    applyPublicConfig();
+    loadDash();
+    toast("รีเซ็ตระบบฐานข้อมูลในเบราว์เซอร์สำเร็จ!");
+    go('dash');
+  }
+}
+</script>
+
 <!-- ═══ SYSTEM JAVASCRIPT LOGIC ═══ -->
 <script>
 /* ════ GLOBAL STATE ════ */
