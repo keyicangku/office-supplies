@@ -44,7 +44,7 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .pg{display:none}.pg.on{display:block}
 
 /* CARDS */
-.card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line);margin-bottom:24px;}
+.card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line)}
 .ch{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
 .ct{font-size:1rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
 .cb{padding:22px}
@@ -53,7 +53,7 @@ body{min-height:100vh;display:flex;flex-direction:column}
 .sg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
 .sc{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line);padding:18px 20px;display:flex;align-items:center;gap:14px}
 .si2{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;flex-shrink:0}
-.si2.g{background:var(--gl);color:var(--g)}.si2.a{background:var(--al);color:var(--amber)}.si2.r{background:var(--rl);color:var(--red)}.si2.b{background:var(--bl);color:var(--blue)}.si2.p{background:var(--pl);color:var(--purple)}
+.si2.g{background:var(--gl)}.si2.a{background:var(--al)}.si2.r{background:var(--rl)}.si2.b{background:var(--bl)}.si2.p{background:var(--pl)}
 .sn p{font-size:.75rem;color:var(--ink3);margin-bottom:3px;font-weight:600}
 .sn h3{font-size:1.7rem;font-weight:800;color:var(--ink);line-height:1;font-family:'IBM Plex Mono',monospace}
 .sn small{font-size:.72rem;color:var(--ink4)}
@@ -147,7 +147,7 @@ tbody tr:hover{background:var(--surf)}
 .md-head h3{font-size:1.05rem;font-weight:800}
 .close-btn{background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--ink3);line-height:1;padding:2px 6px}
 .scan-label{font-size:.84rem;color:var(--ink3);margin-bottom:14px}
-.cam-wrap{position:relative;border-radius:14px;overflow:hidden;background:#000;margin-bottom:14px;min-height:250px;}
+.cam-wrap{position:relative;border-radius:14px;overflow:hidden;background:#000;margin-bottom:14px}
 .scan-line{position:absolute;left:10%;width:80%;height:3px;background:var(--gm);box-shadow:0 0 12px var(--gm);animation:scanline 2s ease-in-out infinite;z-index:10;pointer-events:none}
 @keyframes scanline{0%,100%{top:15%}50%{top:85%}}
 .scan-corner{position:absolute;z-index:10;pointer-events:none}
@@ -190,11 +190,11 @@ tbody tr:hover{background:var(--surf)}
 .lookup-search-card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line);padding:22px;margin-bottom:20px}
 .lookup-input-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
 .lookup-input-row .inp{flex:1;min-width:160px;font-size:1rem;padding:12px 16px}
-.lookup-search-btn{background:var(--g);color:#fff;border:none;border-radius:var(--rs);padding:12px 24px;cursor:pointer;font-size:.95rem;font-weight:700;font-family:'Sarabun',sans-serif;display:flex;align-items:center;gap:8px;transition:.18s;white-space:nowrap}
-.lookup-search-btn:hover{background:var(--gd)}
+.lookup-search-btn{background:var(--red);color:#fff;border:none;border-radius:var(--rs);padding:12px 24px;cursor:pointer;font-size:.95rem;font-weight:700;font-family:'Sarabun',sans-serif;display:flex;align-items:center;gap:8px;transition:.18s;white-space:nowrap}
+.lookup-search-btn:hover{background:#b91c1c}
 .emp-profile-card{background:linear-gradient(135deg,var(--ink),#1e293b);border-radius:var(--r);padding:20px 22px;margin-bottom:20px;color:#fff;display:none;align-items:center;gap:18px}
 .emp-profile-card.show{display:flex}
-.emp-avatar-lg{width:56px;height:56px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:1.4rem;font-weight:800;flex-shrink:0;box-shadow:0 0 0 3px rgba(255,255,255,.2)}
+.emp-avatar-lg{width:56px;height:56px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:1.4rem;font-weight:800;flex-shrink:0;box-shadow:0 0 0 3px rgba(255,255,255,.2)}
 .emp-profile-info h3{font-size:1.05rem;font-weight:800}
 .emp-profile-info p{font-size:.82rem;opacity:.7;margin-top:2px}
 .emp-profile-code{font-size:.78rem;opacity:.5;margin-top:4px;font-family:'IBM Plex Mono',monospace}
@@ -342,9 +342,7 @@ tbody tr:hover{background:var(--surf)}
     <div class="tw">
       <table>
         <thead><tr><th>วันที่</th><th>ประเภท</th><th>สินค้า</th><th>จำนวน</th><th>คงเหลือ</th><th>ผู้เบิก</th><th>แผนก</th></tr></thead>
-        <tbody id="d-tbody">
-          <tr><td colspan="7" style="text-align:center;padding:28px;color:var(--ink3)">กำลังโหลด...</td></tr>
-        </tbody>
+        <tbody id="d-tbody"><tr><td colspan="7" style="text-align:center;padding:28px;color:var(--ink3)">กำลังโหลด...</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -410,7 +408,7 @@ tbody tr:hover{background:var(--surf)}
       <div class="fld"><label class="lbl">ชื่ออุปกรณ์สำนักงาน</label><input type="text" id="fPName" class="inp" placeholder="ชื่อสินค้า"></div>
       <div class="fld"><label class="lbl">ขนาด/สเปค</label><input type="text" id="fPSize" class="inp" placeholder="ขนาด/รุ่น"></div>
     </div>
-    <div class="fg" style="margin-top:14px">
+    <div class="fg">
       <div class="fld">
         <label class="lbl">จำนวน<span class="req">*</span></label>
         <div class="qw"><button class="qb" onclick="adjQ(-1)">−</button><input type="number" id="fQty" class="qi" value="1" min="1"><button class="qb" onclick="adjQ(1)">+</button></div>
@@ -453,7 +451,7 @@ tbody tr:hover{background:var(--surf)}
   <div class="sh"><h2>ประวัติรายการ</h2><span class="pill">HISTORY</span></div>
   <div class="card">
     <div class="ch">
-      <span class="ct">📋 รายการทั้งหมด</span>
+      <span class="ct">📋 50 รายการล่าสุด</span>
       <div style="display:flex;gap:8px">
         <span id="histAdminNote" style="display:none;font-size:.78rem;color:var(--ink3);align-self:center">🔒 ปุ่มแก้ไข/ลบ/อนุมัติ — เฉพาะ Admin</span>
         <button class="btn btn-s btn-sm" onclick="loadHist()">🔄 รีเฟรช</button>
@@ -462,15 +460,12 @@ tbody tr:hover{background:var(--surf)}
     <div class="tw">
       <table>
         <thead><tr>
-          <th>ID</th>
-          <th>วันที่</th><th>ประเภท</th>
+          <th>ID</th><th>วันที่</th><th>ประเภท</th>
           <th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th>จำนวน</th><th>หน่วย</th><th>คงเหลือ</th>
           <th>รหัสพนักงาน</th><th>ชื่อพนักงาน</th><th>แผนก</th><th>หมายเหตุ</th>
           <th>อนุมัติ</th><th id="histActHead" style="display:none">จัดการ</th>
         </tr></thead>
-        <tbody id="histBody">
-          <tr><td colspan="14" style="text-align:center;padding:36px;color:var(--ink3)">กำลังโหลด...</td></tr>
-        </tbody>
+        <tbody id="histBody"><tr><td colspan="14" style="text-align:center;padding:36px;color:var(--ink3)">กำลังโหลด...</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -670,18 +665,6 @@ tbody tr:hover{background:var(--surf)}
             <div class="fld"><label class="lbl">ชื่อบริษัท</label><input type="text" id="cfgCompany" class="inp" oninput="debounceSave()"></div>
           </div>
         </div>
-        <div class="admin-section">
-          <h3>🌐 เชื่อมต่อ Google Sheets (สเปรดชีตหลังบ้าน)</h3>
-          <div class="fld">
-            <label class="lbl">Google Apps Script Web App URL</label>
-            <input type="text" id="cfgGasUrl" class="inp" placeholder="https://script.google.com/macros/s/.../exec" oninput="debounceSave()">
-            <small style="color:var(--ink3)">กรอกสคริปต์ URL เพื่อซิงค์พัสดุและตัดสต็อกลงใน Google Sheets (เว้นว่างเพื่อใช้หน่วยความจำเครื่อง)</small>
-          </div>
-        </div>
-        <div class="admin-section" style="border-top:1.5px dashed var(--line); padding-top:20px;">
-          <h3 style="color:var(--red);">🚨 รีเซ็ตระบบฐานข้อมูลคลัง</h3>
-          <button class="btn btn-r btn-sm" onclick="resetMockDatabase()">⚠️ ล้างคลังพัสดุเป็นค่าเริ่มต้น (Reset Local Storage)</button>
-        </div>
       </div></div>
     </div>
 
@@ -810,317 +793,6 @@ tbody tr:hover{background:var(--surf)}
 
 <div class="tc" id="toastC"></div>
 
-<!-- ═══ GOOGLE APPS SCRIPT EMULATOR Logic (For Offline & GitHub Pages Mode) ═══ -->
-<script>
-const defaultProducts = [
-  {code:"PROD001", name:"ปากกาเคมีสีน้ำเงิน ตราม้า", category:"เครื่องเขียน", size:"หัวตัด", stock:25, unit:"ด้าม"},
-  {code:"PROD002", name:"สมุดจดบันทึกมีเส้น A5", category:"เอกสาร", size:"80 แผ่น", stock:8, unit:"เล่ม"},
-  {code:"PROD003", name:"หมวกเซฟตี้วิศวกรรมสีขาว", category:"ความปลอดภัย", size:"ฟรีไซส์ Class A", stock:12, unit:"ใบ"},
-  {code:"PROD004", name:"ตลับเมตรแสตนเลสเกรดเอ", category:"ทั่วไป", size:"5 เมตร", stock:3, unit:"อัน"},
-  {code:"PROD005", name:"กระดาษถ่ายเอกสาร A4 80g Double A", category:"เอกสาร", size:"500 แผ่น/รีม", stock:0, unit:"รีม"}
-];
-
-const defaultEmployees = [
-  {code:"EMP001", name:"สมชาย ใจดี", department:"วิศวกรและโครงการ", position:"วิศวกรไฟฟ้า", affiliation:"เคหยี่ ก่อสร้าง"},
-  {code:"EMP002", name:"สมหญิง รักเรียน", department:"ธุรการจัดซื้อ", position:"จัดซื้อพัสดุ", affiliation:"เคหยี่ ก่อสร้าง"},
-  {code:"EMP003", name:"อาหลี่ เคหยี่", department:"ผู้ควบคุมงานไซต์", position:"โฟร์แมน", affiliation:"เคหยี่ ก่อสร้าง"}
-];
-
-const defaultHistory = [
-  {rowNum: 1, docId:"REQ001", date:"10/6/2569", type:"รับเข้า", productCode:"PROD001", productName:"ปากกาเคมีสีน้ำเงิน ตราม้า", productSize:"หัวตัด", qty:10, unit:"ด้าม", stock:25, empCode:"EMP002", empName:"สมหญิง รักเรียน", department:"ธุรการจัดซื้อ", note:"เพิ่มเข้าล็อตใหม่", approval:"อนุมัติ"},
-  {rowNum: 2, docId:"REQ002", date:"10/6/2569", type:"เบิกออก", productCode:"PROD003", productName:"หมวกเซฟตี้วิศวกรรมสีขาว", productSize:"ฟรีไซส์ Class A", qty:2, unit:"ใบ", stock:10, empCode:"EMP001", empName:"สมชาย ใจดี", department:"วิศวกรและโครงการ", note:"ใช้หน้างานไซต์ก่อสร้าง", approval:"อนุมัติ"}
-];
-
-const defaultConfigs = {
-  showStock: "true",
-  stockVisibleAll: "true",
-  showHistory: "true",
-  requireApproval: "false",
-  announcement: "ยินดีต้อนรับสู่ระบบคลังพัสดุเคยี่ก่อสร้าง ค้นหา สแกน QR และทำรายการได้ทันที!",
-  companyName: "บริษัทเคยี่ ก่อสร้าง",
-  lineUrl: "https://line.me/ti/p/~yourlineid",
-  lineDisplay: "ติดต่อสโตร์",
-  adminPin: "1234",
-  gasUrl: ""
-};
-
-// Functions to load and save to localStorage
-function getProducts() {
-  if(!localStorage.getItem("KY_Products")) localStorage.setItem("KY_Products", JSON.stringify(defaultProducts));
-  return JSON.parse(localStorage.getItem("KY_Products"));
-}
-function getEmployees() {
-  if(!localStorage.getItem("KY_Employees")) localStorage.setItem("KY_Employees", JSON.stringify(defaultEmployees));
-  return JSON.parse(localStorage.getItem("KY_Employees"));
-}
-function getHistory() {
-  if(!localStorage.getItem("KY_History")) localStorage.setItem("KY_History", JSON.stringify(defaultHistory));
-  return JSON.parse(localStorage.getItem("KY_History"));
-}
-function getConfigs() {
-  if(!localStorage.getItem("KY_Configs")) localStorage.setItem("KY_Configs", JSON.stringify(defaultConfigs));
-  return JSON.parse(localStorage.getItem("KY_Configs"));
-}
-function getTodayThaiDate() {
-  const n = new Date();
-  return `${n.getDate()}/${n.getMonth()+1}/${n.getFullYear()+543}`;
-}
-
-// Local simulation backend
-const mockBackend = {
-  getPublicConfig() { return getConfigs(); },
-  getProductByCode(code) {
-    const p = getProducts().find(prod => prod.code.toUpperCase() === code.toUpperCase());
-    return p ? p : { error: true };
-  },
-  getEmployeeByCode(code) {
-    const e = getEmployees().find(emp => emp.code.toUpperCase() === code.toUpperCase());
-    return e ? e : { error: true };
-  },
-  getEmployeeHistory(code) {
-    return getHistory().filter(h => h.empCode.toUpperCase() === code.toUpperCase());
-  },
-  getDashboardSummary() {
-    const prods = getProducts();
-    const hist = getHistory();
-    const totalProducts = prods.length;
-    const lowStock = prods.filter(p => Number(p.stock) <= 5 && Number(p.stock) > 0).length;
-    const outOfStock = prods.filter(p => Number(p.stock) <= 0).length;
-    const todayStr = getTodayThaiDate();
-    const todayReq = hist.filter(h => h.date === todayStr).length;
-    return { totalProducts, lowStock, outOfStock, todayReq };
-  },
-  getRecentHistory() {
-    return [...getHistory()].reverse();
-  },
-  getAllProducts() {
-    return getProducts();
-  },
-  verifyAdminPin(pin) {
-    return { ok: pin === getConfigs().adminPin };
-  },
-  getAdminConfig() {
-    return getConfigs();
-  },
-  saveAdminConfig(cfg) {
-    const current = getConfigs();
-    const updated = { ...current, ...cfg };
-    localStorage.setItem("KY_Configs", JSON.stringify(updated));
-    return { success: true };
-  },
-  updateHistoryRow(rowNum, fields) {
-    const hist = getHistory();
-    const idx = hist.findIndex(h => h.rowNum === rowNum);
-    if(idx !== -1) {
-      hist[idx] = { ...hist[idx], ...fields };
-      localStorage.setItem("KY_History", JSON.stringify(hist));
-      return { success: true };
-    }
-    return { success: false, error: "Row not found" };
-  },
-  deleteHistoryRow(rowNum) {
-    let hist = getHistory();
-    hist = hist.filter(h => h.rowNum !== rowNum);
-    localStorage.setItem("KY_History", JSON.stringify(hist));
-    return { success: true };
-  },
-  approveHistoryRow(rowNum) {
-    const hist = getHistory();
-    const idx = hist.findIndex(h => h.rowNum === rowNum);
-    if(idx !== -1) {
-      const row = hist[idx];
-      if(row.approval === "รอ" || !row.approval) {
-        if(row.type === 'เบิกออก' || row.type === 'ยืมอุปกรณ์') {
-          const prods = getProducts();
-          const pIdx = prods.findIndex(p => p.code.toUpperCase() === row.productCode.toUpperCase());
-          if(pIdx !== -1) {
-            prods[pIdx].stock = Math.max(0, Number(prods[pIdx].stock) - Number(row.qty));
-            row.stock = prods[pIdx].stock;
-            localStorage.setItem("KY_Products", JSON.stringify(prods));
-          }
-        }
-        row.approval = "อนุมัติ";
-        localStorage.setItem("KY_History", JSON.stringify(hist));
-        return { success: true };
-      }
-    }
-    return { success: false, error: "Row error" };
-  },
-  rejectHistoryRow(rowNum) {
-    const hist = getHistory();
-    const idx = hist.findIndex(h => h.rowNum === rowNum);
-    if(idx !== -1) {
-      hist[idx].approval = "ไม่อนุมัติ";
-      localStorage.setItem("KY_History", JSON.stringify(hist));
-      return { success: true };
-    }
-    return { success: false, error: "Row error" };
-  },
-  saveRequisition(req) {
-    const prods = getProducts();
-    const hist = getHistory();
-    const cfg = getConfigs();
-
-    let prod = prods.find(p => p.code.toUpperCase() === req.productCode.toUpperCase());
-    if(!prod) {
-      prod = {
-        id: "P"+Date.now(),
-        code: req.productCode,
-        name: req.productName,
-        category: "ทั่วไป",
-        size: req.productSize || "",
-        stock: 0,
-        unit: req.unit || "ชิ้น"
-      };
-      prods.push(prod);
-    }
-
-    let apv = "อนุมัติ";
-    if(cfg.requireApproval === "true" && req.type === "เบิกออก") {
-      apv = "รอ";
-    }
-
-    if(apv === "อนุมัติ") {
-      if(req.type === 'เบิกออก' || req.type === 'ยืมอุปกรณ์') {
-        prod.stock = Math.max(0, Number(prod.stock) - Number(req.qty));
-      } else if (req.type === 'รับเข้า') {
-        prod.stock = Number(prod.stock) + Number(req.qty);
-      }
-    }
-
-    localStorage.setItem("KY_Products", JSON.stringify(prods));
-
-    const rowNum = hist.length > 0 ? Math.max(...hist.map(h => h.rowNum)) + 1 : 1;
-    const docId = "REQ" + String(rowNum).padStart(3, '0');
-
-    let displayDate = req.date;
-    if(displayDate) {
-      const parts = displayDate.split("-");
-      if(parts.length === 3) {
-        displayDate = `${parseInt(parts[2])}/${parseInt(parts[1])}/${parseInt(parts[0])+543}`;
-      }
-    } else {
-      displayDate = getTodayThaiDate();
-    }
-
-    const log = {
-      rowNum,
-      docId,
-      date: displayDate,
-      type: req.type,
-      productCode: req.productCode,
-      productName: req.productName,
-      productSize: req.productSize,
-      qty: req.qty,
-      unit: req.unit,
-      stock: prod.stock,
-      empCode: req.empCode || "N/A",
-      empName: req.empName || "บุคคลทั่วไป",
-      department: req.department || "ไม่ระบุแผนก",
-      note: req.note,
-      approval: apv
-    };
-
-    hist.push(log);
-    localStorage.setItem("KY_History", JSON.stringify(hist));
-
-    return { success: true, docId, newStock: prod.stock };
-  }
-};
-
-// Interceptor logic for fetch / gas simulation
-class MockRunner {
-  constructor() {
-    this.onSuccess = () => {};
-    this.onFailure = () => {};
-  }
-  withSuccessHandler(cb) { this.onSuccess = cb; return this; }
-  withFailureHandler(cb) { this.onFailure = cb; return this; }
-}
-
-const mockHandler = {
-  get(target, prop) {
-    if(prop === 'withSuccessHandler') {
-      return function(successCallback) {
-        return new Proxy(new MockRunner().withSuccessHandler(successCallback), mockRunnerHandler);
-      }
-    }
-    if(prop === 'withFailureHandler') {
-      return function(failureCallback) {
-        return new Proxy(new MockRunner().withFailureHandler(failureCallback), mockRunnerHandler);
-      }
-    }
-    return function(...args) {
-      executeMock(prop, args, () => {}, () => {});
-    }
-  }
-};
-
-const mockRunnerHandler = {
-  get(target, prop) {
-    if(prop === 'withSuccessHandler') {
-      return function(cb) { target.withSuccessHandler(cb); return new Proxy(target, mockRunnerHandler); }
-    }
-    if(prop === 'withFailureHandler') {
-      return function(cb) { target.withFailureHandler(cb); return new Proxy(target, mockRunnerHandler); }
-    }
-    return function(...args) {
-      executeMock(prop, args, target.onSuccess, target.onFailure);
-    }
-  }
-};
-
-async function executeMock(funcName, args, onSuccess, onFailure) {
-  const configs = getConfigs();
-  const url = configs.gasUrl;
-  
-  if (url) {
-    // If Web App URL is present, route requests through Sheets
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        mode: "cors",
-        headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ function: funcName, arguments: args })
-      });
-      const data = await response.json();
-      if(data.success) { onSuccess(data.result); return; }
-    } catch(err) {
-      console.warn("GAS Connection failed. Falling back to local offline storage.", err);
-    }
-  }
-
-  // Fallback to client-side localStorage simulation
-  setTimeout(() => {
-    try {
-      const res = mockBackend[funcName](...args);
-      onSuccess(res);
-    } catch(e) {
-      onFailure(e);
-    }
-  }, 100);
-}
-
-// Injected global object
-const google = {
-  script: {
-    run: new Proxy({}, mockHandler)
-  }
-};
-
-// Reset option inside admin panel
-function resetMockDatabase() {
-  if(confirm("คุณต้องการล้างฐานข้อมูลประวัติและพัสดุในเครื่องนี้กลับเป็นค่าเริ่มต้นหรือไม่?")) {
-    localStorage.clear();
-    applyPublicConfig();
-    loadDash();
-    toast("รีเซ็ตระบบฐานข้อมูลในเบราว์เซอร์สำเร็จ!");
-    go('dash');
-  }
-}
-</script>
-
-<!-- ═══ SYSTEM JAVASCRIPT LOGIC ═══ -->
 <script>
 /* ════ GLOBAL STATE ════ */
 let scanTarget='product',currentStock=0,scanActive=false,videoStream=null,scanInterval=null,barcodeDetector=null;
@@ -1163,7 +835,7 @@ function applyPublicConfig(){
     document.getElementById('lineContactText').textContent=pubCfg.lineDisplay||'ติดต่อสโตร์';
   }
   // stock visibility
-  const canSeeStock=pubCfg.showStock==='true'&&(isAdmin||pubCfg.stockVisibleAll==='true');
+  const canSeeStock=pubCfg.showStock&&(isAdmin||pubCfg.stockVisibleAll);
   document.getElementById('siStock').style.display=canSeeStock?'flex':'none';
   document.getElementById('qlStock').style.display=canSeeStock?'flex':'none';
 }
@@ -1182,14 +854,11 @@ function go(id){
   document.querySelectorAll('.si').forEach(s=>s.classList.remove('on'));
   document.getElementById('pg-'+id).classList.add('on');
   const idx=PAGE_MAP[id];
-  if(idx!==undefined)document.querySelectorAll('.side .si')[idx]?.classList.add('on');
+  if(idx!==undefined)document.querySelectorAll('.si')[idx]?.classList.add('on');
   if(id==='hist')loadHist();
   if(id==='dash')loadDash();
   if(id==='stock')loadStock();
-  if(id==='admin'&&!isAdmin){
-    document.getElementById('adminLoginWrap').style.display='block';
-    document.getElementById('adminPanel').style.display='none';
-  }
+  if(id==='admin'&&!isAdmin){document.getElementById('adminLoginWrap').style.display='block';document.getElementById('adminPanel').style.display='none';}
 }
 
 /* ════ FORM HELPERS ════ */
@@ -1268,6 +937,7 @@ function doLookup(){
   document.getElementById('lookupHistSection').style.display='none';
   document.getElementById('lookupHistItems').innerHTML='<div style="padding:20px;text-align:center;color:var(--ink3)"><span class="sp"></span> กำลังโหลด...</div>';
 
+  // ดึงข้อมูลพนักงาน
   google.script.run.withSuccessHandler(emp=>{
     if(!emp||emp.error){
       toast('ไม่พบรหัสพนักงาน: '+code,'err');
@@ -1283,8 +953,9 @@ function doLookup(){
     document.getElementById('lookupProfile').classList.add('show');
   }).withFailureHandler(e=>toast(e.message,'err')).getEmployeeByCode(code);
 
+  // ดึงประวัติพนักงาน (ใช้ฟังก์ชันใหม่แยกประเภท)
   google.script.run.withSuccessHandler(data=>{
-    if(!data || (!data.all && !data.length)){
+    if(!data||(!data.all&&!data.length)){
       document.getElementById('lookupStats').style.display='grid';
       document.getElementById('lookupHistSection').style.display='block';
       document.getElementById('lookupHistItems').innerHTML='<div style="padding:20px;text-align:center;color:var(--ink3)">ยังไม่มีประวัติการเบิก</div>';
@@ -1293,12 +964,19 @@ function doLookup(){
     const rows=data.all||data;
     lookupAllRows=rows;
 
+    // stats แยกประเภท
     const now=new Date();
-    const monthLabel=`${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()+543}`;
-    const monthOut=rows.filter(r=>r.type==='เบิกออก').reduce((s,r)=>s+Number(r.qty||0),0);
-    const monthIn=rows.filter(r=>r.type==='รับเข้า').reduce((s,r)=>s+Number(r.qty||0),0);
-    const monthOutCnt=rows.filter(r=>r.type==='เบิกออก').length;
-    const monthInCnt=rows.filter(r=>r.type==='รับเข้า').length;
+    const monthLabel=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+    const curMonth=rows.filter(r=>{
+      if(!r.date)return false;
+      const p=r.date.split('/');
+      if(p.length===3)return `${p[2]}-${p[1].padStart(2,'0')}`===monthLabel;
+      return false;
+    });
+    const monthOut=curMonth.filter(r=>r.type==='เบิกออก').reduce((s,r)=>s+Number(r.qty||0),0);
+    const monthIn=curMonth.filter(r=>r.type==='รับเข้า').reduce((s,r)=>s+Number(r.qty||0),0);
+    const monthOutCnt=curMonth.filter(r=>r.type==='เบิกออก').length;
+    const monthInCnt=curMonth.filter(r=>r.type==='รับเข้า').length;
 
     document.getElementById('lookupMonthOut').textContent=monthOut;
     document.getElementById('lookupMonthIn').textContent=monthIn;
@@ -1390,13 +1068,13 @@ async function startCamera(){
     if('BarcodeDetector' in window){
       barcodeDetector=new BarcodeDetector({formats:['qr_code','ean_13','ean_8','code_128','code_39','upc_a','upc_e','itf']});
       startBarcodeLoop();setScanStatus('wait','🔍 พร้อมสแกน — วางโค้ดในกรอบ');
-    }else{setScanStatus('err','⚠️ เบราว์เซอร์ไม่รองรับสแกนอัตโนมัติ กรุณากรอกรหัสสินค้าเองที่แถบ "กรอกเอง"');setTimeout(()=>switchTab('man'),2500);}
+    }else{setScanStatus('err','⚠️ เบราว์เซอร์ไม่รองรับสแกน กรุณาใช้แท็บ "กรอกเอง"');setTimeout(()=>switchTab('man'),2000);}
   }catch(err){
     let msg='❌ เปิดกล้องไม่สำเร็จ';
     if(err.name==='NotAllowedError')msg='❌ กรุณาอนุญาตกล้องในเบราว์เซอร์ก่อน';
     if(err.name==='NotFoundError')msg='❌ ไม่พบกล้องในอุปกรณ์นี้';
     if(err.name==='NotReadableError')msg='❌ กล้องถูกใช้โดยแอปอื่นอยู่';
-    setScanStatus('err',msg);setTimeout(()=>switchTab('man'),2500);
+    setScanStatus('err',msg);setTimeout(()=>switchTab('man'),2000);
   }
 }
 function startBarcodeLoop(){
@@ -1443,19 +1121,9 @@ function onScanSuccess(code){
   setTimeout(()=>{stopCamera();closeScan();applyScannedCode(code);},700);
 }
 function applyScannedCode(code){
-  if(scanTarget === 'product'){
-    document.getElementById('fPCode').value=code;
-    lookupProd(code);
-    toast('📦 สแกนสินค้า: '+code,'ok');
-  } else if(scanTarget === 'lookup'){
-    document.getElementById('lookupCode').value=code;
-    doLookup();
-    toast('👤 สแกนพนักงาน: '+code,'ok');
-  } else {
-    document.getElementById('fEmpCode').value=code;
-    lookupEmp(code);
-    toast('👤 สแกนพนักงาน: '+code,'ok');
-  }
+  if(scanTarget==='product'){document.getElementById('fPCode').value=code;lookupProd(code);toast('📦 สแกนสินค้า: '+code,'ok');}
+  else if(scanTarget==='lookup'){document.getElementById('lookupCode').value=code;doLookup();toast('👤 สแกนพนักงาน: '+code,'ok');}
+  else{document.getElementById('fEmpCode').value=code;lookupEmp(code);toast('👤 สแกนพนักงาน: '+code,'ok');}
 }
 function confirmManual(){
   const v=document.getElementById('manCode').value.trim();
@@ -1478,15 +1146,13 @@ function save(){
   if(!pCode){toast('กรุณากรอกรหัสสินค้า','err');return;}
   if(!pNm){toast('กรุณากรอกชื่อสินค้า','err');return;}
   if(qty<1){toast('จำนวนต้องมากกว่า 0','err');return;}
-  if(type==='เบิกออก'&&currentStock>0&&qty>currentStock){
-    if(!confirm(`⚠️ คงเหลือในคลังมีแค่ ${currentStock} แต่ระบบบันทึกเบิก ${qty}\nคุณต้องการทำรายการต่อหรือไม่?`))return;
-  }
+  if(type==='เบิกออก'&&currentStock>0&&qty>currentStock){if(!confirm(`⚠️ คงเหลือมีแค่ ${currentStock} แต่เบิก ${qty}\nดำเนินการต่อหรือไม่?`))return;}
   const btn=document.getElementById('saveBtn');btn.innerHTML='<span class="sp"></span> กำลังบันทึก...';btn.disabled=true;
   google.script.run
     .withSuccessHandler(r=>{
       btn.innerHTML='💾 บันทึก';btn.disabled=false;
       if(r.success){
-        const msg=pubCfg.requireApproval==='true'?`✅ ส่งคำขอเรียบร้อย! ID: ${r.docId} (รอแอดมินอนุมัติ)`:`✅ ทำรายการสำเร็จ! ID: ${r.docId}  ยอดคงเหลือ: ${r.newStock}`;
+        const msg=pubCfg.requireApproval?`✅ บันทึกสำเร็จ! ID: ${r.docId} (รอการอนุมัติ)`:`✅ บันทึกสำเร็จ! ID: ${r.docId}  คงเหลือ: ${r.newStock}`;
         toast(msg,'ok');
         document.getElementById('fStock').value=r.newStock;currentStock=r.newStock;
         document.getElementById('ppSt').textContent=r.newStock;resetF(true);
@@ -1498,10 +1164,7 @@ function save(){
 
 /* ════ RESET ════ */
 function resetF(soft=false){
-  if(!soft){
-    ['fEmpCode','fEmpName','fDept','fPCode','fPName','fPSize','fStock','fUnit'].forEach(id=>document.getElementById(id).value='');
-    hideProd();hideEmp();
-  }
+  if(!soft){['fEmpCode','fEmpName','fDept','fPCode','fPName','fPSize','fStock','fUnit'].forEach(id=>document.getElementById(id).value='');hideProd();hideEmp();}
   document.getElementById('fQty').value='1';document.getElementById('fNote').value='';
   document.getElementById('fDate').value=new Date().toISOString().split('T')[0];setType('เบิกออก');
 }
@@ -1516,7 +1179,7 @@ function loadDash(){
   }).getDashboardSummary();
   google.script.run.withSuccessHandler(rows=>{
     const tb=document.getElementById('d-tbody');
-    if(!rows||!rows.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--ink3)">ยังไม่มีรายการประวัติวันนี้</td></tr>';return;}
+    if(!rows||!rows.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--ink3)">ยังไม่มีรายการ</td></tr>';return;}
     tb.innerHTML=rows.slice(0,8).map(r=>`<tr>
       <td>${r.date||'—'}</td><td>${badge(r.type)}</td><td>${r.productName||'—'}</td>
       <td style="font-family:monospace;font-weight:700">${r.qty||0} ${r.unit||''}</td>
@@ -1537,7 +1200,7 @@ function loadHist(){
   }
   google.script.run
     .withSuccessHandler(rows=>{
-      if(!rows||!rows.length){tb.innerHTML=`<tr><td colspan="${cols}" style="text-align:center;padding:36px;color:var(--ink3)">ยังไม่มีประวัติการเบิกอุปกรณ์</td></tr>`;return;}
+      if(!rows||!rows.length){tb.innerHTML=`<tr><td colspan="${cols}" style="text-align:center;padding:36px;color:var(--ink3)">ยังไม่มีประวัติ</td></tr>`;return;}
       tb.innerHTML=rows.map(r=>`<tr>
         <td style="font-family:monospace;font-size:.78rem">${r.docId||'—'}</td>
         <td>${r.date||'—'}</td><td>${badge(r.type)}</td>
@@ -1595,23 +1258,23 @@ function submitEdit(){
   }).withFailureHandler(e=>toast(e.message,'err')).updateHistoryRow(rowNum,fields);
 }
 function doDelete(rowNum){
-  if(!rowNum||!confirm('⚠️ ลบรายการนี้จริงหรือไม่? ข้อมูลสต็อกคงเหลือเดิมจะไม่ได้รับการอัปเดตกลับ'))return;
+  if(!rowNum||!confirm('⚠️ ลบรายการนี้จริงหรือไม่? ไม่สามารถกู้คืนได้'))return;
   google.script.run.withSuccessHandler(r=>{
-    if(r.success){toast('✅ ลบประวัติสำเร็จ','ok');loadHist();}
+    if(r.success){toast('✅ ลบสำเร็จ','ok');loadHist();}
     else toast('❌ '+r.error,'err');
   }).withFailureHandler(e=>toast(e.message,'err')).deleteHistoryRow(rowNum);
 }
 function doApprove(rowNum){
   if(!rowNum)return;
   google.script.run.withSuccessHandler(r=>{
-    if(r.success){toast('✅ อนุมัติสำเร็จและคลังตัดสต็อกแล้ว','ok');loadHist();loadDash();}
+    if(r.success){toast('✅ อนุมัติแล้ว','ok');loadHist();}
     else toast('❌ '+r.error,'err');
   }).withFailureHandler(e=>toast(e.message,'err')).approveHistoryRow(rowNum);
 }
 function doReject(rowNum){
   if(!rowNum)return;
   google.script.run.withSuccessHandler(r=>{
-    if(r.success){toast('✅ ปฏิเสธการอนุมัติแล้ว','ok');loadHist();loadDash();}
+    if(r.success){toast('✅ ไม่อนุมัติ','ok');loadHist();}
     else toast('❌ '+r.error,'err');
   }).withFailureHandler(e=>toast(e.message,'err')).rejectHistoryRow(rowNum);
 }
@@ -1630,7 +1293,7 @@ function loadStock(){
 }
 function renderStock(data){
   const tb=document.getElementById('stockBody');
-  if(!data.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--ink3)">ไม่มีอุปกรณ์พัสดุใดๆ</td></tr>';return;}
+  if(!data.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--ink3)">ไม่มีรายการ</td></tr>';return;}
   tb.innerHTML=data.map(p=>{
     const s=Number(p.stock)||0;
     const cls=s<=0?'sb-low':s<=5?'sb-warn':'sb-ok';
@@ -1676,8 +1339,7 @@ function pinKey(k){
 function pinDel(){pinBuffer=pinBuffer.slice(0,-1);updatePinDots();document.getElementById('pinErr').textContent='';}
 function updatePinDots(){
   for(let i=0;i<4;i++){
-    const dot = document.getElementById('dot'+i);
-    if(dot) dot.classList.toggle('filled',i<pinBuffer.length);
+    document.getElementById('dot'+i).classList.toggle('filled',i<pinBuffer.length);
   }
 }
 function pinSubmit(){
@@ -1689,7 +1351,7 @@ function pinSubmit(){
       document.getElementById('adminPanel').style.display='block';
       loadAdminConfig();
       applyAdminUI();
-      toast('✅ เข้าสู่ระบบผู้ดูแลสำเร็จ','ok');
+      toast('✅ เข้าสู่ระบบ Admin แล้ว','ok');
     }else{
       document.getElementById('pinErr').textContent='❌ PIN ไม่ถูกต้อง';
       pinBuffer='';updatePinDots();
@@ -1697,26 +1359,26 @@ function pinSubmit(){
   }).withFailureHandler(e=>toast(e.message,'err')).verifyAdminPin(pinBuffer);
 }
 function applyAdminUI(){
+  // show stock in sidebar always for admin
   document.getElementById('siStock').style.display='flex';
   document.getElementById('qlStock').style.display='flex';
-  document.getElementById('stockAdminBadge').style.display=pubCfg.stockVisibleAll==='true'?'none':'inline-flex';
+  document.getElementById('stockAdminBadge').style.display=pubCfg.stockVisibleAll?'none':'inline-flex';
 }
 function adminLogout(){
   isAdmin=false;pinBuffer='';updatePinDots();
   document.getElementById('adminLoginWrap').style.display='block';
   document.getElementById('adminPanel').style.display='none';
   applyPublicConfig();
-  toast('ออกจากระบบผู้ดูแลสำเร็จ','ok');
+  toast('ออกจากระบบ Admin แล้ว','ok');
   go('dash');
 }
 function adminTab(name){
-  const names=['settings','approve','contact','security'];
   document.querySelectorAll('.admin-tab').forEach((t,i)=>{
+    const names=['settings','approve','contact','security'];
     t.classList.toggle('on',names[i]===name);
   });
   document.querySelectorAll('.admin-panel').forEach(p=>p.classList.remove('on'));
-  const targetPanel = document.getElementById('ap'+name.charAt(0).toUpperCase()+name.slice(1));
-  if(targetPanel) targetPanel.classList.add('on');
+  document.getElementById('ap'+name.charAt(0).toUpperCase()+name.slice(1)).classList.add('on');
   if(name==='approve')loadPending();
 }
 function loadAdminConfig(){
@@ -1729,7 +1391,6 @@ function loadAdminConfig(){
     document.getElementById('cfgCompany').value=cfg.companyName||'';
     document.getElementById('cfgLineUrl').value=cfg.lineUrl||'';
     document.getElementById('cfgLineDisplay').value=cfg.lineDisplay||'ติดต่อสโตร์';
-    document.getElementById('cfgGasUrl').value=cfg.gasUrl||'';
     document.getElementById('linePreviewText').textContent=cfg.lineDisplay||'ติดต่อสโตร์';
   }).withFailureHandler(e=>toast(e.message,'err')).getAdminConfig();
 }
@@ -1745,7 +1406,6 @@ function saveCfg(){
     companyName: document.getElementById('cfgCompany').value,
     lineUrl:     document.getElementById('cfgLineUrl').value,
     lineDisplay: document.getElementById('cfgLineDisplay').value,
-    gasUrl:      document.getElementById('cfgGasUrl').value,
   };
   document.getElementById('linePreviewText').textContent=cfg.lineDisplay||'ติดต่อสโตร์';
   google.script.run.withSuccessHandler(r=>{
@@ -1799,10 +1459,10 @@ function badge(t){
   return`<span class="bdg bl2">🔄 ${t||'—'}</span>`;
 }
 function apvBadge(v){
-  if(v==='อนุมัติ' || v==='อนุมัติแล้ว')return'<span class="apv-ok">✅ อนุมัติแล้ว</span>';
-  if(v==='ไม่อนุมัติ')return'<span class="apv-no">✖ ปฏิเสธ</span>';
-  if(v==='รอ' || v==='รออนุมัติ')return'<span class="apv-wait">⏳ รออนุมัติ</span>';
-  return '';
+  if(v==='อนุมัติ')return'<span class="apv-ok">✅ อนุมัติ</span>';
+  if(v==='ไม่อนุมัติ')return'<span class="apv-no">✖ ไม่อนุมัติ</span>';
+  if(v==='รอ')return'<span class="apv-wait">⏳ รอ</span>';
+  return'';
 }
 function toast(msg,cls=''){
   const c=document.getElementById('toastC'),t=document.createElement('div');
