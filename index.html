@@ -292,36 +292,49 @@ tbody tr:hover{background:var(--surf)}
 .bot-nav{
   display:none;
   position:fixed;bottom:0;left:0;right:0;
-  height:62px;background:#fff;
-  border-top:1px solid var(--line);
+  height:62px;
+  background:#fff;
+  border-top:1.5px solid var(--line);
   z-index:150;
-  box-shadow:0 -2px 12px rgba(0,0,0,.09);
+  box-shadow:0 -2px 14px rgba(0,0,0,.10);
 }
-.bot-nav-inner{display:flex;height:100%}
+.bot-nav-inner{
+  display:flex;
+  height:100%;
+  padding:0 4px;
+}
 .bni{
-  flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:2px;cursor:pointer;
-  color:var(--ink4);border:none;background:none;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  cursor:pointer;
+  color:var(--ink4);
+  border:none;
+  background:none;
   font-family:'Sarabun',sans-serif;
   -webkit-tap-highlight-color:transparent;
   transition:.15s;
+  padding:6px 2px 4px;
+  min-width:0;
+  border-radius:10px;
+  margin:4px 2px;
 }
+.bni:active{background:var(--gl)}
 .bni.on{color:var(--g)}
-.bni-icon{font-size:1.3rem;line-height:1}
-.bni-label{font-size:.58rem;font-weight:700}
-
-@media(max-width:900px){
-  .side{display:none!important}
-  .bot-nav{display:flex!important}
+.bni.on .bni-icon-wrap{
+  background:var(--gl);
+  border-radius:20px;
+  padding:2px 14px;
 }
+.bni-icon{font-size:1.25rem;line-height:1;display:block}
+.bni-label{font-size:.56rem;font-weight:700;white-space:nowrap;letter-spacing:.01em}
 
-/* ── NAV ── */
-@media(max-width:900px){
-  .nav{padding:0 12px;height:52px}
-  .nav-company{font-size:.82rem}
-  .nav-title{display:none}
-  .nav-chip{font-size:.66rem;padding:2px 7px}
-  .nav-admin-btn{padding:4px 9px;font-size:.72rem}
+@media(max-width:360px){
+  .bni-label{font-size:.52rem}
+  .bni{margin:4px 1px}
 }
 
 /* ── STATS GRID ── */
